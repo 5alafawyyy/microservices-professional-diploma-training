@@ -219,11 +219,11 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | Item | Value |
 |---|---|
 | **Current phase** | Phase 2 — Containerization & Operations |
-| **Current session** | Session 14 — **Lab 11B complete** (6/6 acceptance criteria PASS) |
-| **Last lab completed** | Lab 11B — GitOps Deployments with ArgoCD (Session 14) |
-| **Next lab** | Session 15 |
-| **Platform state** | Kubernetes manifests for product-service created (stable + canary deployments). ArgoCD application configured to sync from this repository. |
-| **Architecture diagram** | [Milestone 14](docs/architecture/CURRENT_ARCHITECTURE.md) |
+| **Current session** | Session 15 — **Lab 12A complete** (5/5 acceptance criteria PASS) |
+| **Last lab completed** | Lab 12A — Kubernetes Core (Session 15) |
+| **Next lab** | Session 16 |
+| **Platform state** | product-service Kubernetes deployment fortified with secrets, readiness/liveness probes, and CPU/memory constraints. |
+| **Architecture diagram** | [Milestone 15](docs/architecture/CURRENT_ARCHITECTURE.md) |
 | **Environment** | PASS for Phase 2 tooling. |
 | **Blockers** | None. |
 
@@ -246,3 +246,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 10A complete: Saga Orchestration with State Machine added for Order, Inventory, Payment services. |
 | 2026-09-28 | Lab 11A complete: CI/CD GitHub Actions pipelines + Notification Service implementation for event tracking. |
 | 2026-09-28 | Lab 11B complete: Kubernetes manifests and ArgoCD GitOps deployment for product-service. |
+| 2026-09-28 | Lab 12A complete: Added K8s Secrets, Resource Requests/Limits, and Liveness/Readiness probes. |
