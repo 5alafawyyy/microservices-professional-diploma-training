@@ -219,11 +219,11 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | Item | Value |
 |---|---|
 | **Current phase** | Phase 2 — Containerization & Operations |
-| **Current session** | Session 12 — **Lab 10A complete** (6/6 acceptance criteria PASS) |
-| **Last lab completed** | Lab 10A — Saga Orchestration (Session 12) |
-| **Next lab** | Session 13 |
-| **Platform state** | Orchestrated Saga implemented alongside existing Choreographed Saga. OrderService acting as orchestrator with state machine tracking state. |
-| **Architecture diagram** | [Milestone 12](docs/architecture/CURRENT_ARCHITECTURE.md) |
+| **Current session** | Session 13 — **Lab 11A complete** (6/6 acceptance criteria PASS) |
+| **Last lab completed** | Lab 11A — CI/CD Pipelines + Notification Service (Session 13) |
+| **Next lab** | Session 14 |
+| **Platform state** | CI/CD GitHub Actions active for product/notification. Notification Service consuming Kafka payment-events. |
+| **Architecture diagram** | [Milestone 13](docs/architecture/CURRENT_ARCHITECTURE.md) |
 | **Environment** | PASS for Phase 2 tooling. |
 | **Blockers** | None. |
 
@@ -244,3 +244,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 9A complete: Implemented @WebMvcTest, @ParameterizedTest, and TestContainers integration tests for Product Service. |
 | 2026-09-28 | Lab 9B complete: Pact consumer/provider contracts and WireMock for order-service. |
 | 2026-09-28 | Lab 10A complete: Saga Orchestration with State Machine added for Order, Inventory, Payment services. |
+| 2026-09-28 | Lab 11A complete: CI/CD GitHub Actions pipelines + Notification Service implementation for event tracking. |
