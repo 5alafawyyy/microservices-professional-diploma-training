@@ -10,6 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 import java.util.Optional;
+import java.util.Arrays;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -40,6 +41,10 @@ class ProductControllerTest {
 
     @MockBean
     private ProductService productService;
+    @MockBean
+    private ProductCommandService commandService;
+    @MockBean
+    private ProductQueryService queryService;
 
     @Autowired
     private ObjectMapper objectMapper;
