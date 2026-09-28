@@ -219,11 +219,11 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | Item | Value |
 |---|---|
 | **Current phase** | Phase 2 — Containerization & Operations |
-| **Current session** | Session 11 — **Lab 9B complete** (4/4 acceptance criteria PASS) |
-| **Last lab completed** | Lab 9B — Contract Testing & WireMock (Session 11) |
-| **Next lab** | Session 12 |
-| **Platform state** | 10 containers ready. Order Service implements Pact consumer and WireMock stubs. Inventory Service implements Pact verification. |
-| **Architecture diagram** | [Milestone 11](docs/architecture/CURRENT_ARCHITECTURE.md) |
+| **Current session** | Session 12 — **Lab 10A complete** (6/6 acceptance criteria PASS) |
+| **Last lab completed** | Lab 10A — Saga Orchestration (Session 12) |
+| **Next lab** | Session 13 |
+| **Platform state** | Orchestrated Saga implemented alongside existing Choreographed Saga. OrderService acting as orchestrator with state machine tracking state. |
+| **Architecture diagram** | [Milestone 12](docs/architecture/CURRENT_ARCHITECTURE.md) |
 | **Environment** | PASS for Phase 2 tooling. |
 | **Blockers** | None. |
 
@@ -243,3 +243,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 8A complete: All 7 services containerized using multi-stage Dockerfiles. |
 | 2026-09-28 | Lab 9A complete: Implemented @WebMvcTest, @ParameterizedTest, and TestContainers integration tests for Product Service. |
 | 2026-09-28 | Lab 9B complete: Pact consumer/provider contracts and WireMock for order-service. |
+| 2026-09-28 | Lab 10A complete: Saga Orchestration with State Machine added for Order, Inventory, Payment services. |
