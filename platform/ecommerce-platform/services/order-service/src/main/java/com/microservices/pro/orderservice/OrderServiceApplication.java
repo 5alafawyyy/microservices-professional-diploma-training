@@ -9,7 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Calls Payment Service to process payments, protected by the full
  * Resilience4j stack: Bulkhead, TimeLimiter, CircuitBreaker, Retry.
  */
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
 @SpringBootApplication
+@EnableFeignClients
 public class OrderServiceApplication {
 
     public static void main(String[] args) {

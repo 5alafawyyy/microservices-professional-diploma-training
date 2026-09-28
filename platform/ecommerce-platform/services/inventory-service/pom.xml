@@ -12,25 +12,14 @@
     </parent>
 
     <groupId>com.microservices.pro</groupId>
-    <artifactId>order-service</artifactId>
+    <artifactId>inventory-service</artifactId>
     <version>1.0.0</version>
-    <name>order-service</name>
+    <name>inventory-service</name>
     <description>
-        Order Service — Session 4 (Circuit Breaker + Retry), extended in
-        Session 5 (Bulkhead + TimeLimiter). Plain Spring Boot Servlet
-        (blocking) web service — NOT reactive/WebFlux.
-
-        CRITICAL: this module must depend on spring-boot-starter-aop.
-        Resilience4j's @CircuitBreaker / @Retry / @Bulkhead / @TimeLimiter
-        annotations are implemented via Spring AOP proxies — without this
-        dependency the annotations are silently ignored (no error at
-        startup, no error at runtime; the method just executes normally
-        every time, which is confusing to debug). See Session 4 docx,
-        "Common Issues &amp; Solutions" table.
-
-        Does NOT depend on OpenFeign (Session 6) or Spring Kafka (Session 7)
-        — Order Service calls PaymentService as a plain injected Spring bean
-        in this scope, not over the network. See OrderService.java for why.
+        Inventory Service — Session 6, extended in Session 7 (Saga + Kafka).
+        Plain Spring Boot Servlet (blocking) web service — NOT reactive/WebFlux.
+        In-memory stock map for now (documented technical debt — see Session 8
+        Architecture Clinic).
     </description>
 
     <properties>
@@ -55,26 +44,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.github.resilience4j</groupId>
-            <artifactId>resilience4j-spring-boot3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-            <!-- AOP is REQUIRED — Resilience4j annotations use Spring AOP -->
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-    
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

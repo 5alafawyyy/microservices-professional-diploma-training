@@ -221,11 +221,11 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | Item | Value |
 |---|---|
 | **Current phase** | Phase 1 — Foundation & Core Patterns |
-| **Current session** | Session 5 — **Lab 3B complete** (7/7 acceptance criteria PASS) |
-| **Last lab completed** | Lab 3B — Advanced Resilience (Bulkhead & TimeLimiter) (Session 5) |
-| **Next lab** | Lab 4A — Service Communication (Inventory & OpenFeign) (Session 6) |
-| **Platform state** | 5 modules built and verified running: config-server :8888, eureka-server :8761, product-service :8081, api-gateway :8080, order-service :8082. Redis and Postgres containers healthy. |
-| **Architecture diagram** | [Milestone 5](docs/architecture/CURRENT_ARCHITECTURE.md) — full resilience stack applied |
+| **Current session** | Session 6 — **Lab 4A complete** (7/7 acceptance criteria PASS) |
+| **Last lab completed** | Lab 4A — Service Communication (Inventory & OpenFeign) (Session 6) |
+| **Next lab** | Lab 4B — Choreography Saga (Inventory & Kafka) (Session 7) |
+| **Platform state** | 6 modules built and verified running: config-server, eureka-server, product-service, api-gateway, order-service, inventory-service. Redis and Postgres containers healthy. |
+| **Architecture diagram** | [Milestone 6](docs/architecture/CURRENT_ARCHITECTURE.md) — synchronous service communication |
 | **Environment** | PASS for Phase 1 tooling. |
 | **Blockers** | None. |
 
@@ -239,3 +239,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 2B complete: Redis added to compose; JwtAuthFilter and RequestRateLimiter added to api-gateway. |
 | 2026-09-28 | Lab 3A complete: order-service and payment-service scaffolding added. Circuit Breaker & Retry patterns applied. |
 | 2026-09-28 | Lab 3B complete: Bulkhead & TimeLimiter applied on order-service. Full Resilience4j stack verified. |
+| 2026-09-28 | Lab 4A complete: inventory-service built. order-service uses OpenFeign to synchronously check stock. |

@@ -41,12 +41,20 @@ public class OrderService {
     @Autowired
     private PaymentService paymentService;
 
+    @Autowired
+    private InventoryClient inventoryClient;
+
     @Bulkhead(name = "paymentService", fallbackMethod = "bulkheadFallback")
     @TimeLimiter(name = "paymentService", fallbackMethod = "timeoutFallback")
     @CircuitBreaker(name = "paymentService", fallbackMethod = "paymentFallback")
     @Retry(name = "paymentService")
     public CompletableFuture<OrderResponse> createOrderAsync(OrderRequest request) {
         return CompletableFuture.supplyAsync(() -> {
+            StockCheckResponse stock = inventoryClient.checkStock(request.productId(), request.quantity());
+            if (!stock.available()) {
+                return new OrderResponse("REJECTED", "Insufficient stock: only " + stock.remainingStock() + " available");
+            }
+
             PaymentResponse payment = paymentService.processPayment(
                     new PaymentRequest(request.amount())
             );

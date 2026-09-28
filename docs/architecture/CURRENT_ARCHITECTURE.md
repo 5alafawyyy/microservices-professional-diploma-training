@@ -4,6 +4,44 @@
 > Update rules: full redraw at every lab milestone; milestone header at the top; never silently edit — each update is its own commit (docs: update architecture for lab NN).
 > Statuses used in this repo: PASS / NOT VERIFIED / BLOCKED / NOT REVIEWED.
 
+## Milestone 6 — After Lab 04A (Session 6 complete: Inventory & OpenFeign)
+
+**Date:** 2026-09-28
+**State:** 7 runtime members live. Order Service synchronously checks Inventory via OpenFeign before processing.
+
+`
+                        +---------------------------------------------+
+                        ¦        TRAINING PLATFORM — MILESTONE 6      ¦
+                        ¦      "synchronous service communication"    ¦
+                        +---------------------------------------------+
+
+                                         lb://PRODUCT-SERVICE
+             client ----------? +-------------------+ ?------------ +--------------+
+               :8080            ¦   api-gateway     ¦               ¦    redis     ¦
+            /api/v1/products    ¦      :8080        ¦               ¦    :6379     ¦
+            /api/orders         ¦ (JwtAuthFilter)   ¦               ¦ (Rate Limiter¦
+                                ¦ (RequestRateLim.) ¦               ¦  Token Bucket¦
+                                ¦ (LoggingFilter)   ¦               +--------------+
+                                +-------------------+
+                                          ¦
+                            +--------------------------+
+                            ?                          ?
+                     product-service             order-service
+                         :8081                       :8082
+                    (In-memory CRUD)            (Resilience4j stack)
+                                                       ¦
+                                                 (OpenFeign Client)
+                                                 (JWT Interceptor)
+                                                       ¦
+                                                       ?
+                                               inventory-service
+                                                     :8084
+                                                (In-memory Store)
+`
+
+**What changed in this milestone:** net-new — inventory-service added.
+order-service updated to use spring-cloud-starter-openfeign. It now synchronously calls GET /api/v1/inventory/check before processing a payment. If stock is unavailable, it returns REJECTED immediately. A FeignJwtInterceptor was added to propagate the JWT token down to inventory-service.
+
 ## Milestone 5 — After Lab 03B (Session 5 complete: Full Resilience Stack)
 
 **Date:** 2026-09-28
@@ -301,6 +339,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 | 3 | 02B | 2026-09-28 | Added Redis :6379 to compose. Added JwtAuthFilter for authentication and RequestRateLimiter using Redis token bucket. |
 | 4 | 03A | 2026-09-28 | Added order-service and payment-service. Implemented Circuit Breaker and Retry on Order->Payment call. |
 | 5 | 03B | 2026-09-28 | Added Bulkhead and TimeLimiter to order-service. Changed order processing to CompletableFuture for TimeLimiter support. |
+| 6 | 04A | 2026-09-28 | Added inventory-service. Configured OpenFeign in order-service to synchronously check stock before payment. |
 
 ## How this file is used
 
