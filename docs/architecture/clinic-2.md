@@ -1,4 +1,4 @@
-﻿# Architecture Clinic #2: Final Wrap-up
+# Architecture Clinic #2: Final Wrap-up
 
 This clinic reviews the technical debt identified in Clinic #1 (Session 8) and documents the final state of the architecture as we transition into the Capstone project.
 
@@ -8,7 +8,7 @@ We carried forward 8 items from Clinic #1. Here is their current status at the e
 
 | Item | Status | Resolution / Carry Over |
 |---|---|---|
-| **1. In-memory stock map** | **RESOLVED** | Replaced with Postgres during the Saga Orchestration phase (Session 12 / Lab 10A). |
+| **1. In-memory stock map** | **CARRY OVER** | The inventory service still uses a `ConcurrentHashMap` for stock. Postgres migration is deferred to Capstone. |
 | **2. No idempotency on payment** | **RESOLVED** | Implemented Idempotency Keys in Lab 18 (Session 22). |
 | **3. Hardcoded PUBLIC_ROUTES** | **CARRY OVER** | Security routes are still largely hardcoded in SecurityConfig. Needs externalized configuration or centralized auth rules. |
 | **4. No Kafka DLQ** | **CARRY OVER** | We added a transactional outbox in Lab 18, but a proper Dead Letter Queue for poison messages in consumer groups remains a Capstone item. |
