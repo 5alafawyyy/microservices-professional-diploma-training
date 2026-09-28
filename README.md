@@ -253,3 +253,6 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 15 complete: Keycloak container added with manual token flow verification. |
 | 2026-09-28 | Lab 16 complete: API Gateway migrated to OAuth2 Resource Server. Client Credentials configured. |
 | 2026-09-28 | Lab 17 complete: Istio Service Mesh enabled with strict mTLS and 80/20 traffic split. |`n| 2026-09-28 | Lab 18 complete: Outbox pattern in order-service and Idempotency in payment-service. |`n| 2026-09-28 | Lab 19 complete: k6 load testing scripts and bottleneck findings written. |
+
+## Note on Special Characters
+If you encounter any special characters not understood by the system or editor (such as replacement characters ` or invalid UTF-8 bytes like  x90 and  x97), please ensure that your environment and text editors are fully configured to use UTF-8 encoding. This issue typically happens when files are read or written using cp1252 (Windows-1252) instead of UTF-8.
