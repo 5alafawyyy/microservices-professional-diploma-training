@@ -5,13 +5,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
- * Service registry for the platform.
+ * Eureka Discovery Server — Session 1.
  *
- * Every service registers itself here on startup; clients look services up
- * by application name (client-side discovery) instead of hardcoding hosts.
+ * This service IS the registry. Every other service in the platform
+ * (Product Service today, all future services later) registers itself
+ * here so callers can find it by name instead of a hardcoded IP/port.
+ *
+ * Dashboard: http://localhost:8761
  */
-@EnableEurekaServer
 @SpringBootApplication
+@EnableEurekaServer
 public class EurekaServerApplication {
 
     public static void main(String[] args) {

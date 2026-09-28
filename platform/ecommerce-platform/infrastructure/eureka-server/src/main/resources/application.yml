@@ -1,3 +1,9 @@
+# application.yml — Eureka Server
+# Session 1 — Architecture & Spring Cloud
+#
+# This server does NOT register itself: it IS the registry.
+# register-with-eureka: false / fetch-registry: false are how we tell it that.
+
 server:
   port: 8761
 
@@ -7,13 +13,13 @@ spring:
 
 eureka:
   client:
-    # The registry does not register with itself nor fetch a registry copy.
-    register-with-eureka: false
+    register-with-eureka: false   # server does not register itself
     fetch-registry: false
   server:
-    # DEV ONLY: self-preservation protects against network partitions; it is
-    # disabled here so stale instances disappear quickly during exercises.
-    enable-self-preservation: false
+    enable-self-preservation: false  # DEV ONLY — disables Eureka's network-partition
+                                      # safety net so deregistration is immediate during
+                                      # labs/demos. NEVER set this to false in production —
+                                      # it protects the registry during real network blips.
 
 management:
   endpoints:

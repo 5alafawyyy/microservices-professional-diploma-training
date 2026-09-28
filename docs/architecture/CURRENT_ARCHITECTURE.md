@@ -4,6 +4,57 @@
 > Update rules: full redraw at every lab milestone; milestone header at the top; never silently edit — each update is its own commit (docs: update architecture for lab NN).
 > Statuses used in this repo: PASS / NOT VERIFIED / BLOCKED / NOT REVIEWED.
 
+## Milestone 9 — After Lab 08A (Session 9 complete: Dockerize Platform)
+
+**Date:** 2026-09-28
+**State:** 7 containerized Spring Boot services, 3 containerized infrastructure services.
+
+`
+                        +---------------------------------------------+
+                        ¦        TRAINING PLATFORM — MILESTONE 9      ¦
+                        ¦           "containerized platform"          ¦
+                        +---------------------------------------------+
+                                  [ DOCKER NETWORK: platform-net ]
+
+                                         lb://PRODUCT-SERVICE
+             client ----------? +-------------------+ ?------------ +--------------+
+               :8080            ¦   api-gateway     ¦               ¦    redis     ¦
+            /api/v1/products    ¦    (container)    ¦               ¦    :6379     ¦
+            /api/orders         ¦                   ¦               ¦ (Rate Limiter¦
+                                ¦                   ¦               ¦  Token Bucket¦
+                                ¦                   ¦ ?------------ +--------------+
+                                +-------------------+                      ¦
+                                          ¦                                ¦
+                            +--------------------------+                   ¦
+                            ?                          ?                   ¦
+                     product-service             order-service             ¦
+                       (container)                (container)              ¦
+                      (Spring Cache) --------------------------------------+
+                    (JPA / Postgres)            (Resilience4j stack)
+                            ¦                   (KafkaProducer)
+                            ¦                   (SagaEventHandler)
+                            ?                          ¦
+                     +--------------+                  ¦
+                     ¦   postgres   ¦                  ¦
+                     ¦    :5432     ¦                  ¦
+                     +--------------+                  ¦
+                                                       ¦
+                           +---------------------------¦
+                           ?                           ?
+                     (Apache Kafka)            inventory-service
+                      :9092/:29092                (container)
+                           ?                    (SagaEventHandler)
+                           ¦                           ?
+                           +---------------------------¦
+                                                       ?
+                                                payment-service
+                                                  (container)
+                                                (SagaEventHandler)
+
+     [ config-server:8888 (container) ]      [ eureka-server:8761 (container) ]
+`
+
+**What changed in this milestone:** All 7 Spring Boot services have been containerized using multi-stage Dockerfiles. They run as a non-root user (1001:1001) based on eclipse-temurin:21-jre-jammy. Health checks and dependency conditions have been configured in docker-compose.yml, bringing the entire platform under full Docker lifecycle management.
 ## Milestone 8 — After Lab 06A (Session 8 complete: Redis Caching)
 
 **Date:** 2026-09-28
@@ -437,6 +488,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 | 6 | 04A | 2026-09-28 | Added inventory-service. Configured OpenFeign in order-service to synchronously check stock before payment. |
 | 7 | 05A | 2026-09-28 | Added Kafka to compose. Implemented Choreography Saga across Order, Inventory, and Payment services. |
 | 8 | 06A | 2026-09-28 | Upgraded product-service to use Postgres and Redis caching. |
+| 9 | 08A | 2026-09-28 | Containerized all 7 services using multi-stage Dockerfiles and docker-compose. |
 
 ## How this file is used
 

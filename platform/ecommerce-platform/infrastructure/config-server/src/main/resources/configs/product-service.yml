@@ -1,5 +1,7 @@
-# Served to product-service by the Config Server (native backend).
-# Marker property used to prove externalized configuration end-to-end:
-# GET http://localhost:8888/product-service/default
+# product-service.yml
+# Served by Config Server to Product Service at startup.
+# This is the "Factor 3: Config" externalization point — Product Service does
+# NOT hardcode this in its own application.yml.
+
 app:
-  source: config-server
+  source: "config-server"   # marker so trainees can confirm remote config was actually loaded

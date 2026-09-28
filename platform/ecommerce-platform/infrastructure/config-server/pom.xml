@@ -15,7 +15,11 @@
     <artifactId>config-server</artifactId>
     <version>1.0.0</version>
     <name>config-server</name>
-    <description>Centralized configuration server (native backend) for the Enterprise E-Commerce Platform</description>
+    <description>
+        Spring Cloud Config Server — Session 1.
+        Centralizes configuration so services do not hardcode environment-specific
+        values in their own application.yml (12-Factor App, Factor 3: Config).
+    </description>
 
     <properties>
         <java.version>21</java.version>
@@ -58,4 +62,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

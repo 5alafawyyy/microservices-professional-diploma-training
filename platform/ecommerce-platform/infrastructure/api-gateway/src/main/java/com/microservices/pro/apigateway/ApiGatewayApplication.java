@@ -4,10 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * API Gateway — the single entry point of the platform.
+ * API Gateway — Session 2.
  *
- * Routes (product-service today) are declared in application.yml and resolved
- * through Eureka with lb://. Runs on the reactive WebFlux/Netty stack.
+ * Single entry point for all external traffic. Routes /api/v1/products/**
+ * to Product Service via Eureka (lb://PRODUCT-SERVICE) — see application.yml.
+ *
+ * Built on Spring Cloud Gateway + WebFlux. Do NOT add spring-boot-starter-web
+ * to this module (see pom.xml description).
  */
 @SpringBootApplication
 public class ApiGatewayApplication {

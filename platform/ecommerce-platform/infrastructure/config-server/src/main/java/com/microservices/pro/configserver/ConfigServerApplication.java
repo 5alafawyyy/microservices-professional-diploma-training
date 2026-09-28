@@ -5,14 +5,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
- * Centralized configuration server for the platform.
+ * Spring Cloud Config Server — Session 1.
  *
- * Runs with the "native" backend: configuration files are served from the
- * classpath (src/main/resources/configs) instead of a Git repository, so this
- * module is self-contained for the training environment.
+ * Centralized configuration for every service in the platform.
+ * Services pull their config from here at startup via
+ * spring.config.import: "optional:configserver:http://localhost:8888"
+ *
+ * Health check: http://localhost:8888/actuator/health
  */
-@EnableConfigServer
 @SpringBootApplication
+@EnableConfigServer
 public class ConfigServerApplication {
 
     public static void main(String[] args) {

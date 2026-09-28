@@ -29,7 +29,7 @@ public class PaymentSagaHandler {
 
     private static final Logger log = LoggerFactory.getLogger(PaymentSagaHandler.class);
 
-    private final ObjectMapper objectMapper = new ObjectMapper().configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     private PaymentProcessor paymentProcessor;

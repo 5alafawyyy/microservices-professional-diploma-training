@@ -15,7 +15,11 @@
     <artifactId>eureka-server</artifactId>
     <version>1.0.0</version>
     <name>eureka-server</name>
-    <description>Service registry (Netflix Eureka) for the Enterprise E-Commerce Platform</description>
+    <description>
+        Eureka Discovery Server — Session 1.
+        Service registry for the Enterprise E-Commerce Platform.
+        Does NOT register itself (it IS the registry) — see application.yml.
+    </description>
 
     <properties>
         <java.version>21</java.version>
@@ -58,4 +62,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
