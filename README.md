@@ -219,11 +219,11 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | Item | Value |
 |---|---|
 | **Current phase** | Phase 2 — Containerization & Operations |
-| **Current session** | Session 15 — **Lab 12A complete** (5/5 acceptance criteria PASS) |
-| **Last lab completed** | Lab 12A — Kubernetes Core (Session 15) |
-| **Next lab** | Session 16 |
-| **Platform state** | product-service Kubernetes deployment fortified with secrets, readiness/liveness probes, and CPU/memory constraints. |
-| **Architecture diagram** | [Milestone 15](docs/architecture/CURRENT_ARCHITECTURE.md) |
+| **Current session** | Session 16 — **Lab 12B complete** (7/7 acceptance criteria PASS) |
+| **Last lab completed** | Lab 12B — HPA + Helm Chart + RBAC (Session 16) |
+| **Next lab** | Session 17 |
+| **Platform state** | product-service managed by Helm with Horizontal Pod Autoscaling (HPA) and Role-Based Access Control (RBAC). |
+| **Architecture diagram** | [Milestone 16](docs/architecture/CURRENT_ARCHITECTURE.md) |
 | **Environment** | PASS for Phase 2 tooling. |
 | **Blockers** | None. |
 
@@ -247,3 +247,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 11A complete: CI/CD GitHub Actions pipelines + Notification Service implementation for event tracking. |
 | 2026-09-28 | Lab 11B complete: Kubernetes manifests and ArgoCD GitOps deployment for product-service. |
 | 2026-09-28 | Lab 12A complete: Added K8s Secrets, Resource Requests/Limits, and Liveness/Readiness probes. |
+| 2026-09-28 | Lab 12B complete: Added HPA, Helm Chart, and RBAC policies. |
