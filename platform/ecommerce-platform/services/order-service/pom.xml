@@ -3,104 +3,72 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.4</version>
         <relativePath/>
     </parent>
-
     <groupId>com.microservices.pro</groupId>
     <artifactId>order-service</artifactId>
     <version>1.0.0</version>
     <name>order-service</name>
     <description>
-        Order Service — Session 4 (Circuit Breaker + Retry), Session 5 (Bulkhead + TimeLimiter),
-        Session 6 (OpenFeign Inventory pre-check), Session 7 (Saga via Kafka),
-        Session 11 (Pact consumer contract test + WireMock stub for InventoryClient).
+        Order Service — Session 4-7 (resilience, Feign, Saga),
+        Session 11 (Pact + WireMock), Session 12 (Orchestration),
+        Session 17 (Observability: tracing, metrics, structured logging).
     </description>
-
     <properties>
         <java.version>21</java.version>
         <spring-cloud.version>2023.0.3</spring-cloud.version>
         <pact.version>4.6.7</pact.version>
     </properties>
-
     <dependencies>
+        <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-web</artifactId></dependency>
+        <dependency><groupId>org.springframework.cloud</groupId><artifactId>spring-cloud-starter-netflix-eureka-client</artifactId></dependency>
+        <dependency><groupId>org.springframework.cloud</groupId><artifactId>spring-cloud-starter-config</artifactId></dependency>
+        <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-actuator</artifactId></dependency>
+        <dependency><groupId>io.github.resilience4j</groupId><artifactId>resilience4j-spring-boot3</artifactId></dependency>
+        <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-aop</artifactId></dependency>
+        <dependency><groupId>org.springframework.cloud</groupId><artifactId>spring-cloud-starter-openfeign</artifactId></dependency>
+        <dependency><groupId>org.springframework.kafka</groupId><artifactId>spring-kafka</artifactId></dependency>
+        <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-data-jpa</artifactId></dependency>
+        <dependency><groupId>org.postgresql</groupId><artifactId>postgresql</artifactId><scope>runtime</scope></dependency>
+
+        <!-- Session 17 — Distributed Tracing -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-tracing-bridge-brave</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>io.zipkin.reporter2</groupId>
+            <artifactId>zipkin-reporter-brave</artifactId>
         </dependency>
+
+        <!-- Session 17 — Prometheus metrics -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>
+
+        <!-- Session 17 — Structured JSON logging -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>7.4</version>
         </dependency>
-        <dependency>
-            <groupId>io.github.resilience4j</groupId>
-            <artifactId>resilience4j-spring-boot3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- Session 11 — Pact Consumer Contract Testing -->
-        <dependency>
-            <groupId>au.com.dius.pact.consumer</groupId>
-            <artifactId>junit5</artifactId>
-            <version>${pact.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- Session 11 — WireMock: stub external HTTP services in tests.
-             🎯 DESIGN CHOICE: WireMock vs Mockito
-               WireMock: use when your code makes REAL HTTP calls (OpenFeign, RestTemplate, WebClient).
-                          Tests URL paths, query params, JSON serialization — things Mockito cannot.
-               Mockito:   use for in-process Java bean interactions (@Service, @Repository).
-             order-service calls inventory-service via OpenFeign (a real HTTP client) →
-             WireMock is the correct tool for stubbing it in integration tests. -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-contract-wiremock</artifactId>
-            <scope>test</scope>
-        </dependency>
-    
+
+        <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-test</artifactId><scope>test</scope></dependency>
+        <dependency><groupId>au.com.dius.pact.consumer</groupId><artifactId>junit5</artifactId><version>${pact.version}</version><scope>test</scope></dependency>
+        <dependency><groupId>org.springframework.cloud</groupId><artifactId>spring-cloud-contract-wiremock</artifactId><scope>test</scope></dependency>
+
         <dependency>
             <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-jackson</artifactId><version>13.2</version>
+            <artifactId>feign-jackson</artifactId>
+            <version>13.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -110,22 +78,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-        
+    
         <dependency>
             <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-jackson</artifactId><version>13.2</version>
+            <artifactId>feign-jackson</artifactId>
+            <version>13.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
     </dependencyManagement>
-
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
+            <plugin><groupId>org.springframework.boot</groupId><artifactId>spring-boot-maven-plugin</artifactId></plugin>
         </plugins>
     </build>
-
 </project>

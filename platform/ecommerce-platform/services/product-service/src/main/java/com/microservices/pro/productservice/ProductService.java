@@ -3,6 +3,7 @@ package com.microservices.pro.productservice;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
+import io.micrometer.core.annotation.Timed;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +40,7 @@ public class ProductService {
     }
 
     @Cacheable(value = "products", key = "#id")
+    @Timed(value = "product.findById", description = "Time to fetch a product by ID")
     public Optional<Product> findById(Long id) {
         return productRepository.findById(id);
     }

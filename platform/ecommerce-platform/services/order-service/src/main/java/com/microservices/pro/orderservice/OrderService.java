@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import io.micrometer.core.annotation.Timed;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -118,6 +119,7 @@ public class OrderService {
     //
     // No @CircuitBreaker/@Retry/@Bulkhead/@TimeLimiter here on purpose.
 
+    @Timed(value = "order.create", description = "Time to create an order")
     public OrderResponse createOrder(OrderRequest request) {
         StockCheckResponse stock = inventoryClient.checkStock(request.productId(), request.quantity());
         if (!stock.available()) {

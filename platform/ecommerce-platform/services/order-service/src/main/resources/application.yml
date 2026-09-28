@@ -1,11 +1,6 @@
 # application.yml — Order Service
-# Session 4  — resilience4j config
-# Session 5  — bulkhead + timelimiter
-# Session 6  — (Feign uses Eureka, no new config)
-# Session 7  — datasource + kafka (order-events, inventory-events, payment-events)
-# Session 12 — adds saga-commands + saga-results consumer factory
-#              (configured via SagaKafkaConfig.java — see that class for why
-#               a separate factory is needed)
+# Session 4-7 — resilience, kafka, datasource
+# Session 17  — adds: tracing, prometheus, structured logging
 
 server:
   port: 8082
@@ -21,7 +16,7 @@ spring:
     password: postgres
   jpa:
     hibernate:
-      ddl-auto: update  # DEV ONLY
+      ddl-auto: update
   kafka:
     bootstrap-servers: localhost:9092
     producer:
@@ -34,15 +29,20 @@ spring:
       properties:
         spring.json.trusted.packages: "com.microservices.pro.*"
       auto-offset-reset: earliest
-    # Session 12 — Orchestrator listens on saga-results with 3 distinct groups.
-    # These are configured programmatically in SagaKafkaConfig.java using
-    # @KafkaListener(containerFactory = "sagaResultsListenerFactory").
-    # No additional yml config needed here beyond the bootstrap-servers above.
-    #
-    # Consumer group IDs introduced in S12 (all distinct from S7 groups):
-    #   orchestrator-inventory    (saga-results, handleInventoryResult)
-    #   orchestrator-payment      (saga-results, handlePaymentResult)
-    #   orchestrator-compensation (saga-results, handleInventoryReleased)
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,circuitbreakers,bulkheads,retries,prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  tracing:
+    sampling:
+      probability: 1.0  # DEV ONLY — production: 0.1
+    zipkin:
+      endpoint: http://localhost:9411/api/v2/spans
 
 eureka:
   client:
@@ -50,15 +50,6 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     prefer-ip-address: true
-
-management:
-  health:
-    circuitbreakers:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: health,circuitbreakers,bulkheads,retries
 
 resilience4j:
   circuitbreaker:
@@ -78,10 +69,6 @@ resilience4j:
         wait-duration: 500ms
         enable-exponential-backoff: true
         exponential-backoff-multiplier: 2
-        retry-exceptions:
-          - java.lang.RuntimeException
-        ignore-exceptions:
-          - java.lang.IllegalArgumentException
   bulkhead:
     instances:
       paymentService:
