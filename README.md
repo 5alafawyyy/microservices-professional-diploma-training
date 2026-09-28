@@ -219,11 +219,11 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | Item | Value |
 |---|---|
 | **Current phase** | Phase 3 — Observability & Advanced Patterns |
-| **Current session** | Session 17 — **Lab 13A complete** (6/6 acceptance criteria PASS) |
-| **Last lab completed** | Lab 13A — Observability (Session 17) |
-| **Next lab** | Session 18 |
-| **Platform state** | Zipkin distributed tracing, Prometheus metrics collection, Grafana dashboards, and structured JSON logging configured. |
-| **Architecture diagram** | [Milestone 17](docs/architecture/CURRENT_ARCHITECTURE.md) |
+| **Current session** | Session 18 — **Lab 13B complete** (6/6 acceptance criteria PASS) |
+| **Last lab completed** | Lab 13B — CQRS Command/Query Split (Session 18) |
+| **Next lab** | Session 19 |
+| **Platform state** | CQRS pattern applied to product-service with distinct Command and Query services, event publishing, and cache eviction. |
+| **Architecture diagram** | [Milestone 18](docs/architecture/CURRENT_ARCHITECTURE.md) |
 | **Environment** | PASS for Phase 3 tooling. |
 | **Blockers** | None. |
 
@@ -249,3 +249,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 12A complete: Added K8s Secrets, Resource Requests/Limits, and Liveness/Readiness probes. |
 | 2026-09-28 | Lab 12B complete: Added HPA, Helm Chart, and RBAC policies. |
 | 2026-09-28 | Lab 13A complete: Integrated Zipkin, Prometheus, Grafana, and structured JSON logging. |
+| 2026-09-28 | Lab 13B complete: Applied CQRS Command/Query split to product-service. |
