@@ -31,6 +31,8 @@ Package structure changes.
 `product-service`
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 Code cleanly separates read and write operations.
 
 ## 10. Verification Commands/Tests

@@ -33,6 +33,8 @@ Lab 16, K8s cluster.
 `k8s/istio/`
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 mTLS enforced between pods.
 
 ## 10. Verification Commands/Tests

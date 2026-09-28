@@ -34,6 +34,8 @@ Lab 04A, Kafka cluster.
 `docker-compose.yml`, `order`, `inventory`, `payment` event listeners
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 Order flows from PENDING to COMPLETED (or CANCELLED) via Kafka events.
 
 ## 10. Verification Commands/Tests

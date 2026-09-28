@@ -32,6 +32,8 @@ Lab 08A.
 `product-service/src/test/...`
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 `mvn test` spins up Docker containers, runs tests against them, and tears them down.
 
 ## 10. Verification Commands/Tests

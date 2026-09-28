@@ -32,6 +32,8 @@ Phase 1 completion.
 `Dockerfile` (in every service), root `docker-compose.yml`
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 `docker compose up` brings up the entire platform successfully.
 
 ## 10. Verification Commands/Tests

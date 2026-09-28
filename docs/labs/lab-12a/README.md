@@ -33,6 +33,8 @@ Lab 11B.
 `k8s/manifests/`
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 Pod schedules and reports healthy via Readiness probe.
 
 ## 10. Verification Commands/Tests

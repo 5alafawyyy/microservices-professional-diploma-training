@@ -32,6 +32,8 @@ State machine state transitions.
 `order-service` saga package.
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 Orders flow through the Orchestrator state machine successfully.
 
 ## 10. Verification Commands/Tests

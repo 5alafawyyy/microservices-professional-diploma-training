@@ -33,6 +33,8 @@ Pact maven plugin, `@PactFolder`.
 `order-service` tests, `inventory-service` tests
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 Pact file generated and verified successfully.
 
 ## 10. Verification Commands/Tests

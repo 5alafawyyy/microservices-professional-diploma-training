@@ -11,7 +11,7 @@ This audit verifies that the docs/labs/ directory contains a usable training doc
 | Lab 02B | S03 | OFFICIAL SOURCE LAB | SOURCE-DERIVED | PASS |
 | Lab 03A | S04 | OFFICIAL SOURCE LAB | SOURCE-DERIVED | PASS |
 | Lab 03B | S05 | OFFICIAL SOURCE LAB | SOURCE-DERIVED | PASS |
-| Lab 04A | S06 | OFFICIAL SOURCE LAB | SOURCE-DERIVED | PASS |
+| Lab 04A | S06 | OFFICIAL SOURCE LAB | SOURCE-DERIVED / RECONSTRUCTED | PASS |
 | Lab 05A | S07 | OFFICIAL SOURCE LAB | RECONSTRUCTED | PASS |
 | Lab 06A | S08 | OFFICIAL SOURCE LAB | SOURCE-DERIVED | PASS |
 | Lab 08A | S09 | NO STANDALONE SOURCE LAB | RECONSTRUCTED | PASS |
@@ -29,6 +29,9 @@ This audit verifies that the docs/labs/ directory contains a usable training doc
 | Lab 17 | S21 | NO STANDALONE SOURCE LAB | RECONSTRUCTED | PASS |
 | Lab 18 | S22 | OFFICIAL SOURCE LAB | SOURCE-DERIVED / EXPANDED | PASS |
 | Lab 19 | S23 | OFFICIAL SOURCE LAB | SOURCE-DERIVED / EXPANDED | PASS |
+
+
+> **Important Distinction:** A lab marked as functionally 'complete' or passing acceptance criteria means the **implementation** successfully meets the repository requirements. It does **not** indicate that the student's independent knowledge readiness for that lab has been assessed or passed. Implementation status is separate from learning status.
 
 ## Audit Results
 

@@ -16,7 +16,9 @@ Manual builds are error-prone; failed events disappear into the void.
 * **Architectural Impact:** Automates verification; adds event failure safety net.
 
 ## 4. Concepts Explained
-CI/CD Pipelines, Kafka Dead Letter Queue (DLQ), @RetryableTopic.
+CI/CD Pipelines, Kafka Topic Retries, @RetryableTopic.
+
+*Technical Debt Note:* This lab implements a localized retry/DLQ specifically for the Notification Service using @RetryableTopic. A proper, platform-wide Dead Letter Queue (DLQ) strategy for poison messages across all core consumer groups (Order, Inventory, Payment) remains missing and is tracked as a Capstone carry-over item.
 
 ## 5. Prerequisites
 Lab 10A.
@@ -32,6 +34,8 @@ Lab 10A.
 `.github/workflows`, `notification-service`
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 Pipeline passes on commit; Notification service routes failures to DLQ.
 
 ## 10. Verification Commands/Tests

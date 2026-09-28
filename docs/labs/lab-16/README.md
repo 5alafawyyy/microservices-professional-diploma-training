@@ -33,6 +33,8 @@ Lab 15.
 `api-gateway`
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 Gateway automatically validates Keycloak tokens.
 
 ## 10. Verification Commands/Tests

@@ -32,6 +32,8 @@ Keycloak realm export JSON.
 `docker-compose.yml`, `keycloak-realm.json`
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 Can fetch a JWT from Keycloak token endpoint.
 
 ## 10. Verification Commands/Tests

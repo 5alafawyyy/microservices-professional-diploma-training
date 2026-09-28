@@ -15,6 +15,9 @@ Every lab is strictly classified using a two-axis model:
 
 > Lab numbering follows the course/reference curriculum and therefore contains intentional numbering gaps. Absence of a lab number does not indicate missing work.
 
+
+> **Important Distinction:** A lab marked as functionally 'complete' or passing acceptance criteria means the **implementation** successfully meets the repository requirements. It does **not** indicate that the student's independent knowledge readiness for that lab has been assessed or passed. Implementation status is separate from learning status.
+
 ## Lab Index
 
 | Lab | Session | Topic | Source Status | Training Documentation |
@@ -24,7 +27,7 @@ Every lab is strictly classified using a two-axis model:
 | [Lab 02B](lab-02b/README.md) | S03 | API Gateway Security | OFFICIAL SOURCE LAB | SOURCE-DERIVED |
 | [Lab 03A](lab-03a/README.md) | S04 | Circuit Breaker & Retry | OFFICIAL SOURCE LAB | SOURCE-DERIVED |
 | [Lab 03B](lab-03b/README.md) | S05 | Bulkhead & TimeLimiter | OFFICIAL SOURCE LAB | SOURCE-DERIVED |
-| [Lab 04A](lab-04a/README.md) | S06 | OpenFeign & Sync Communication | OFFICIAL SOURCE LAB | SOURCE-DERIVED |
+| [Lab 04A](lab-04a/README.md) | S06 | OpenFeign & Sync Communication | OFFICIAL SOURCE LAB | SOURCE-DERIVED / RECONSTRUCTED |
 | [Lab 05A](lab-05a/README.md) | S07 | Kafka Choreography Saga | OFFICIAL SOURCE LAB | RECONSTRUCTED |
 | [Lab 06A](lab-06a/README.md) | S08 | Postgres & Redis Cache | OFFICIAL SOURCE LAB | SOURCE-DERIVED |
 | [Lab 08A](lab-08a/README.md) | S09 | Docker Containerization | NO STANDALONE SOURCE LAB | RECONSTRUCTED |

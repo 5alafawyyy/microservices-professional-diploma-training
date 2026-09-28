@@ -2,7 +2,7 @@
 
 ## Documentation Classification
 * **Source Status:** OFFICIAL SOURCE LAB
-* **Training Documentation:** SOURCE-DERIVED
+* **Training Documentation:** SOURCE-DERIVED / RECONSTRUCTED (LOCAL SOURCE FILE ABSENT)
 
 ## 1. Exact Objective
 Build Inventory Service and implement sync communication via OpenFeign.

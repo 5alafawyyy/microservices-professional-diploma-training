@@ -31,6 +31,8 @@ Lab 11A.
 `k8s/argocd/`
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 ArgoCD detects changes in Git and syncs to cluster.
 
 ## 10. Verification Commands/Tests

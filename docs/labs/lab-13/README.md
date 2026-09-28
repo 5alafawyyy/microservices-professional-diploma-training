@@ -32,6 +32,8 @@ Phase 2 completion.
 All `pom.xml`, `application.yml`
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 Single request to Gateway appears as a unified trace graph in Zipkin.
 
 ## 10. Verification Commands/Tests

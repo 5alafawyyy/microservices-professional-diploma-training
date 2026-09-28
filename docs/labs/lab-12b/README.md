@@ -33,6 +33,8 @@ Lab 12A.
 `k8s/helm/`
 
 ## 9. Acceptance Criteria
+> *Reconstructed inference — not explicitly documented in the source material. Derived from reference implementation behavior.*
+
 HPA dynamically creates pods when CPU spikes.
 
 ## 10. Verification Commands/Tests
