@@ -4,6 +4,47 @@
 > Update rules: full redraw at every lab milestone; milestone header at the top; never silently edit — each update is its own commit (docs: update architecture for lab NN).
 > Statuses used in this repo: PASS / NOT VERIFIED / BLOCKED / NOT REVIEWED.
 
+## Milestone 5 — After Lab 03B (Session 5 complete: Full Resilience Stack)
+
+**Date:** 2026-09-28
+**State:** 6 runtime members live. Order Service uses full Resilience4j stack.
+
+`
+                        +---------------------------------------------+
+                        ¦        TRAINING PLATFORM — MILESTONE 5      ¦
+                        ¦      "full resilience stack applied"        ¦
+                        +---------------------------------------------+
+
+                                         lb://PRODUCT-SERVICE
+             client ----------? +-------------------+ ?------------ +--------------+
+               :8080            ¦   api-gateway     ¦               ¦    redis     ¦
+            /api/v1/products    ¦      :8080        ¦               ¦    :6379     ¦
+            /api/orders         ¦ (JwtAuthFilter)   ¦               ¦ (Rate Limiter¦
+                                ¦ (RequestRateLim.) ¦               ¦  Token Bucket¦
+                                ¦ (LoggingFilter)   ¦               +--------------+
+                                +-------------------+
+                                          ¦
+                            +--------------------------+
+                            ?                          ?
+                     product-service             order-service
+                         :8081                       :8082
+                    (In-memory CRUD)            (Resilience4j stack:)
+                                                (@Bulkhead)
+                                                (@TimeLimiter)
+                                                (@CircuitBreaker)
+                                                (@Retry)
+                                                       ¦
+                                                 (local bean call
+                                                  to simulate HTTP)
+                                                       ¦
+                                                       ?
+                                             (PaymentService bean)
+`
+
+**What changed in this milestone:** net-new — order-service added @Bulkhead (max 10 concurrent calls) and @TimeLimiter (2s timeout).
+The createOrderAsync method now returns a CompletableFuture to support TimeLimiter aborts.
+Verified: Order Service returns QUEUED on bulkhead full and PENDING on timeout.
+
 ## Milestone 4 — After Lab 03A (Session 4 complete: Circuit Breaker & Retry)
 
 **Date:** 2026-09-28
@@ -259,6 +300,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 | 2 | 02A | 2026-09-28 | api-gateway :8080. Configured path route /api/v1/products/** to lb://PRODUCT-SERVICE. Added LoggingFilter and X-Platform response header. |
 | 3 | 02B | 2026-09-28 | Added Redis :6379 to compose. Added JwtAuthFilter for authentication and RequestRateLimiter using Redis token bucket. |
 | 4 | 03A | 2026-09-28 | Added order-service and payment-service. Implemented Circuit Breaker and Retry on Order->Payment call. |
+| 5 | 03B | 2026-09-28 | Added Bulkhead and TimeLimiter to order-service. Changed order processing to CompletableFuture for TimeLimiter support. |
 
 ## How this file is used
 
