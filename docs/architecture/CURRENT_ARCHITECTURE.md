@@ -4,6 +4,51 @@
 > Update rules: full redraw at every lab milestone; milestone header at the top; never silently edit — each update is its own commit (docs: update architecture for lab NN).
 > Statuses used in this repo: PASS / NOT VERIFIED / BLOCKED / NOT REVIEWED.
 
+## Milestone 7 — After Lab 05A (Session 7 complete: Choreography Saga)
+
+**Date:** 2026-09-28
+**State:** 8 runtime members live (Kafka added). Distributed transaction via Choreography Saga.
+
+`
+                        +---------------------------------------------+
+                        ¦        TRAINING PLATFORM — MILESTONE 7      ¦
+                        ¦             "choreography saga"             ¦
+                        +---------------------------------------------+
+
+                                         lb://PRODUCT-SERVICE
+             client ----------? +-------------------+ ?------------ +--------------+
+               :8080            ¦   api-gateway     ¦               ¦    redis     ¦
+            /api/v1/products    ¦      :8080        ¦               ¦    :6379     ¦
+            /api/orders         ¦ (JwtAuthFilter)   ¦               ¦ (Rate Limiter¦
+                                ¦ (RequestRateLim.) ¦               ¦  Token Bucket¦
+                                ¦ (LoggingFilter)   ¦               +--------------+
+                                +-------------------+
+                                          ¦
+                            +--------------------------+
+                            ?                          ?
+                     product-service             order-service
+                         :8081                       :8082
+                    (In-memory CRUD)            (Resilience4j stack)
+                                                (KafkaProducer)
+                                                (SagaEventHandler)
+                                                       ¦
+                           +---------------------------¦
+                           ?                           ?
+                     (Apache Kafka)            inventory-service
+                      :9092/:29092                   :8084
+                           ?                    (SagaEventHandler)
+                           ¦                           ?
+                           +---------------------------¦
+                                                       ?
+                                                payment-service
+                                                     :8083
+                                                (SagaEventHandler)
+`
+
+**What changed in this milestone:** net-new — kafka added to docker-compose.
+Saga pattern implemented. order-service publishes OrderPlacedEvent instead of synchronously charging payment. inventory-service consumes it, reserves stock, and publishes InventoryReservedEvent. payment-service consumes it, charges payment, and publishes PaymentCompletedEvent (or PaymentFailedEvent). On failure, inventory-service releases stock.
+(Note: OpenFeign sync pre-check remains active before Saga starts).
+
 ## Milestone 6 — After Lab 04A (Session 6 complete: Inventory & OpenFeign)
 
 **Date:** 2026-09-28
@@ -340,6 +385,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 | 4 | 03A | 2026-09-28 | Added order-service and payment-service. Implemented Circuit Breaker and Retry on Order->Payment call. |
 | 5 | 03B | 2026-09-28 | Added Bulkhead and TimeLimiter to order-service. Changed order processing to CompletableFuture for TimeLimiter support. |
 | 6 | 04A | 2026-09-28 | Added inventory-service. Configured OpenFeign in order-service to synchronously check stock before payment. |
+| 7 | 05A | 2026-09-28 | Added Kafka to compose. Implemented Choreography Saga across Order, Inventory, and Payment services. |
 
 ## How this file is used
 
