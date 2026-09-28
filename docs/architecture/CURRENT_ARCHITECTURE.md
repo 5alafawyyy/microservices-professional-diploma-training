@@ -4,6 +4,56 @@
 > Update rules: full redraw at every lab milestone; milestone header at the top; never silently edit — each update is its own commit (docs: update architecture for lab NN).
 > Statuses used in this repo: PASS / NOT VERIFIED / BLOCKED / NOT REVIEWED.
 
+## Milestone 8 — After Lab 06A (Session 8 complete: Redis Caching)
+
+**Date:** 2026-09-28
+**State:** 8 runtime members live. Redis caching added to Product Service.
+
+`
+                        +---------------------------------------------+
+                        ¦        TRAINING PLATFORM — MILESTONE 8      ¦
+                        ¦               "redis caching"               ¦
+                        +---------------------------------------------+
+
+                                         lb://PRODUCT-SERVICE
+             client ----------? +-------------------+ ?------------ +--------------+
+               :8080            ¦   api-gateway     ¦               ¦    redis     ¦
+            /api/v1/products    ¦      :8080        ¦               ¦    :6379     ¦
+            /api/orders         ¦ (JwtAuthFilter)   ¦               ¦ (Rate Limiter¦
+                                ¦ (RequestRateLim.) ¦               ¦  Token Bucket¦
+                                ¦ (LoggingFilter)   ¦ ?------------ +--------------+
+                                +-------------------+                      ¦
+                                          ¦                                ¦
+                            +--------------------------+                   ¦
+                            ?                          ?                   ¦
+                     product-service             order-service             ¦
+                         :8081                       :8082                 ¦
+                      (Spring Cache) --------------------------------------+
+                    (JPA / Postgres)            (Resilience4j stack)
+                            ¦                   (KafkaProducer)
+                            ¦                   (SagaEventHandler)
+                            ?                          ¦
+                     +--------------+                  ¦
+                     ¦   postgres   ¦                  ¦
+                     ¦    :5432     ¦                  ¦
+                     +--------------+                  ¦
+                                                       ¦
+                           +---------------------------¦
+                           ?                           ?
+                     (Apache Kafka)            inventory-service
+                      :9092/:29092                   :8084
+                           ?                    (SagaEventHandler)
+                           ¦                           ?
+                           +---------------------------¦
+                                                       ?
+                                                payment-service
+                                                     :8083
+                                                (SagaEventHandler)
+`
+
+**What changed in this milestone:** product-service was upgraded from an in-memory Map to use Spring Data JPA backed by postgres. It also gained a caching layer using @Cacheable backed by 
+edis, significantly reducing database load for read operations.
+
 ## Milestone 7 — After Lab 05A (Session 7 complete: Choreography Saga)
 
 **Date:** 2026-09-28
@@ -386,6 +436,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 | 5 | 03B | 2026-09-28 | Added Bulkhead and TimeLimiter to order-service. Changed order processing to CompletableFuture for TimeLimiter support. |
 | 6 | 04A | 2026-09-28 | Added inventory-service. Configured OpenFeign in order-service to synchronously check stock before payment. |
 | 7 | 05A | 2026-09-28 | Added Kafka to compose. Implemented Choreography Saga across Order, Inventory, and Payment services. |
+| 8 | 06A | 2026-09-28 | Upgraded product-service to use Postgres and Redis caching. |
 
 ## How this file is used
 

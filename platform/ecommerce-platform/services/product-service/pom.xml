@@ -15,7 +15,10 @@
     <artifactId>product-service</artifactId>
     <version>1.0.0</version>
     <name>product-service</name>
-    <description>Product bounded context — first domain microservice of the Enterprise E-Commerce Platform</description>
+    <description>
+        Product Service — Session 1. First domain microservice in the platform.
+        In-memory store for now (JPA + PostgreSQL is Session 1 homework / Phase 2).
+    </description>
 
     <properties>
         <java.version>21</java.version>
@@ -39,6 +42,28 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
+        <!-- Session 1 homework, implemented Session 8 — JPA + PostgreSQL -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Session 8 — Redis caching -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -66,4 +91,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

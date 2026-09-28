@@ -1,81 +1,81 @@
 package com.microservices.pro.productservice;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
- * Service-layer tests for Lab 1.
+ * ProductServiceTest.
  *
- * ProductService has no collaborators, so no mocking framework is needed here
- * (Mockito stubbing starts in Session 10). Each test gets a fresh instance.
+ * History: Session 1 shipped these same 4 tests against an in-memory Map.
+ * Since Session 1's optional JPA homework was implemented in Session 8 (see
+ * Product.java / ProductRepository.java), this test now mocks
+ * ProductRepository with Mockito instead — same test names, same intent
+ * (findAll empty, save+findById round-trip, findById miss, deleteById),
+ * adapted to the new collaborator.
+ *
+ * Note: this test does NOT exercise @Cacheable/@CacheEvict behavior — that
+ * requires a Spring context (cache manager, Redis) and is deferred to
+ * Session 10 (Integration Testing), consistent with the Unit-Tests-only
+ * pattern used throughout Sessions 1-8. See docs/labs/session-08-lab-6a.md.
  */
+@ExtendWith(MockitoExtension.class)
 class ProductServiceTest {
 
+    @Mock
+    private ProductRepository productRepository;
+
+    @InjectMocks
     private ProductService productService;
 
-    @BeforeEach
-    void setUp() {
-        productService = new ProductService();
-    }
+    @Test
+    void findAll_returnsEmptyList_whenNoProductsExist() {
+        when(productRepository.findAll()).thenReturn(List.of());
 
-    private Product laptop() {
-        return new Product(null, "Laptop", "15-inch laptop", new BigDecimal("999.99"), "Electronics");
+        List<Product> products = productService.findAll();
+
+        assertThat(products).isEmpty();
     }
 
     @Test
-    void findAll_returnsEmptyList_whenStoreIsEmpty() {
-        assertThat(productService.findAll()).isEmpty();
-    }
+    void save_storesProduct_andFindByIdRetrievesIt() {
+        Product newProduct = new Product(null, "Laptop", "15-inch laptop", new BigDecimal("999.99"), "Electronics");
+        Product saved = new Product(1L, "Laptop", "15-inch laptop", new BigDecimal("999.99"), "Electronics");
+        when(productRepository.save(newProduct)).thenReturn(saved);
+        when(productRepository.findById(1L)).thenReturn(Optional.of(saved));
 
-    @Test
-    void save_assignsId_andFindByIdRetrievesTheProduct() {
-        Product saved = productService.save(laptop());
+        Product result = productService.save(newProduct);
+        Optional<Product> found = productService.findById(result.getId());
 
-        assertThat(saved.id()).isNotNull();
-        Optional<Product> found = productService.findById(saved.id());
         assertThat(found).isPresent();
-        assertThat(found.get().name()).isEqualTo("Laptop");
-        assertThat(found.get().price()).isEqualByComparingTo("999.99");
-        assertThat(found.get().category()).isEqualTo("Electronics");
+        assertThat(found.get().getName()).isEqualTo("Laptop");
+        assertThat(found.get().getPrice()).isEqualTo(new BigDecimal("999.99"));
     }
 
     @Test
-    void save_keepsClientSuppliedId() {
-        Product saved = productService.save(new Product(42L, "Mouse", "Wireless mouse", new BigDecimal("19.99"), "Electronics"));
+    void findById_returnsEmptyOptional_forNonExistentId() {
+        when(productRepository.findById(999L)).thenReturn(Optional.empty());
 
-        assertThat(saved.id()).isEqualTo(42L);
-        assertThat(productService.findById(42L)).isPresent();
+        Optional<Product> found = productService.findById(999L);
+
+        assertThat(found).isEmpty();
     }
 
     @Test
-    void findById_returnsEmptyOptional_forUnknownId() {
-        assertThat(productService.findById(999L)).isEmpty();
-    }
+    void deleteById_callsRepositoryDeleteById() {
+        productService.deleteById(5L);
 
-    @Test
-    void deleteById_removesTheProduct() {
-        Product saved = productService.save(laptop());
-
-        productService.deleteById(saved.id());
-
-        assertThat(productService.findById(saved.id())).isEmpty();
-    }
-
-    @Test
-    void findAll_returnsImmutableSnapshot_notTheLiveStore() {
-        productService.save(laptop());
-
-        List<Product> snapshot = productService.findAll();
-
-        assertThat(snapshot).hasSize(1);
-        assertThatThrownBy(() -> snapshot.add(laptop()))
-                .isInstanceOf(UnsupportedOperationException.class);
+        verify(productRepository, times(1)).deleteById(5L);
     }
 }

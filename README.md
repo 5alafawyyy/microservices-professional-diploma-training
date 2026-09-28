@@ -221,12 +221,12 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | Item | Value |
 |---|---|
 | **Current phase** | Phase 1 — Foundation & Core Patterns |
-| **Current session** | Session 7 — **Lab 5A complete** (7/7 acceptance criteria PASS) |
-| **Last lab completed** | Lab 5A — Order Saga (Choreography & Kafka) (Session 7) |
-| **Next lab** | Lab 6A — Redis Caching (Session 8) |
-| **Platform state** | 6 modules built. Kafka & Zookeeper added to compose. Redis and Postgres healthy. |
-| **Architecture diagram** | [Milestone 7](docs/architecture/CURRENT_ARCHITECTURE.md) — choreography saga |
-| **Environment** | PASS for Phase 1 tooling. Kafka running via Docker. |
+| **Current session** | Session 8 — **Lab 6A complete** (7/7 acceptance criteria PASS) |
+| **Last lab completed** | Lab 6A — Redis Caching on Product Service (Session 8) |
+| **Next lab** | Phase 1 is complete! Moving to next phases or awaiting further instructions. |
+| **Platform state** | 6 modules built. Kafka, Zookeeper, Redis, Postgres healthy. Product Service uses caching and JPA. |
+| **Architecture diagram** | [Milestone 8](docs/architecture/CURRENT_ARCHITECTURE.md) — redis caching |
+| **Environment** | PASS for Phase 1 tooling. |
 | **Blockers** | None. |
 
 ### Milestone log
@@ -241,3 +241,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 3B complete: Bulkhead & TimeLimiter applied on order-service. Full Resilience4j stack verified. |
 | 2026-09-28 | Lab 4A complete: inventory-service built. order-service uses OpenFeign to synchronously check stock. |
 | 2026-09-28 | Lab 5A complete: Kafka added to compose. Choreography Saga implemented across Order, Inventory, Payment. |
+| 2026-09-28 | Lab 6A complete: Product Service upgraded to Postgres and Redis caching. |
