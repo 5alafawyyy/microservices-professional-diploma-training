@@ -220,8 +220,8 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 |---|---|
 | **Current phase** | Phase 3 — Observability & Advanced Patterns |
 | **Current session** | Session 21 — **Lab 17 complete** (6/6 acceptance criteria PASS) |
-| **Last lab completed** | Lab 17 — Istio: mTLS + Traffic Management (Session 21) |
-| **Next lab** | Session 22 |
+| **Last lab completed** | Lab 19 � Performance & Load Testing (Session 23) |
+| **Next lab** | Session 24 (Wrap-up) |
 | **Platform state** | Istio Service Mesh enabled in ecommerce namespace. Strict mTLS enforced. 80/20 weighted traffic split configured for product-service canary. |
 | **Architecture diagram** | [Milestone 21](docs/architecture/CURRENT_ARCHITECTURE.md) |
 | **Environment** | PASS for Phase 3 tooling. |
@@ -252,4 +252,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 13B complete: Applied CQRS Command/Query split to product-service. |
 | 2026-09-28 | Lab 15 complete: Keycloak container added with manual token flow verification. |
 | 2026-09-28 | Lab 16 complete: API Gateway migrated to OAuth2 Resource Server. Client Credentials configured. |
-| 2026-09-28 | Lab 17 complete: Istio Service Mesh enabled with strict mTLS and 80/20 traffic split. |
+| 2026-09-28 | Lab 17 complete: Istio Service Mesh enabled with strict mTLS and 80/20 traffic split. |`n| 2026-09-28 | Lab 18 complete: Outbox pattern in order-service and Idempotency in payment-service. |`n| 2026-09-28 | Lab 19 complete: k6 load testing scripts and bottleneck findings written. |
