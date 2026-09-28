@@ -215,17 +215,15 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 
 
 ## CURRENT STATUS
-
 > Block updated at every lab milestone. Statuses: PASS / NOT VERIFIED / BLOCKED / NOT REVIEWED.
-
 | Item | Value |
 |---|---|
 | **Current phase** | Phase 2 — Containerization & Operations |
-| **Current session** | Session 10 — **Lab 9A complete** (4/4 acceptance criteria PASS) |
-| **Last lab completed** | Lab 9A — Unit & Integration Testing (Session 10) |
-| **Next lab** | Lab 9B — TestContainers in CI (Session 11) |
-| **Platform state** | 10 containers running. Product Service fully tested via @WebMvcTest and TestContainers. |
-| **Architecture diagram** | [Milestone 10](docs/architecture/CURRENT_ARCHITECTURE.md) — (unchanged from Milestone 9) |
+| **Current session** | Session 11 — **Lab 9B complete** (4/4 acceptance criteria PASS) |
+| **Last lab completed** | Lab 9B — Contract Testing & WireMock (Session 11) |
+| **Next lab** | Session 12 |
+| **Platform state** | 10 containers ready. Order Service implements Pact consumer and WireMock stubs. Inventory Service implements Pact verification. |
+| **Architecture diagram** | [Milestone 11](docs/architecture/CURRENT_ARCHITECTURE.md) |
 | **Environment** | PASS for Phase 2 tooling. |
 | **Blockers** | None. |
 
@@ -244,3 +242,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 6A complete: Product Service upgraded to Postgres and Redis caching. |
 | 2026-09-28 | Lab 8A complete: All 7 services containerized using multi-stage Dockerfiles. |
 | 2026-09-28 | Lab 9A complete: Implemented @WebMvcTest, @ParameterizedTest, and TestContainers integration tests for Product Service. |
+| 2026-09-28 | Lab 9B complete: Pact consumer/provider contracts and WireMock for order-service. |
