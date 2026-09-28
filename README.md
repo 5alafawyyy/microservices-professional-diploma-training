@@ -112,18 +112,20 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 
 | Item | Value |
 |---|---|
-| **Current phase** | Phase 1 â€” Foundation & Core Patterns |
-| **Current session** | Session 1 â€” **Lab 1 complete** (7/7 acceptance criteria PASS) |
-| **Last lab completed** | Lab 1 â€” Product Service + Eureka + Config Server (Session 1) |
-| **Next lab** | Lab 2 â€” API Gateway + Product route (Session 2) â€” blocked on port 8080 (IdentityIQ stack) |
-| **Platform state** | 3 modules built and verified running: config-server :8888, eureka-server :8761, product-service :8081 (in-memory CRUD); postgres container healthy |
-| **Architecture diagram** | [Milestone 1](docs/architecture/CURRENT_ARCHITECTURE.md) â€” config + discovery foundations |
-| **Environment** | PASS for Phase 1 tooling (JDK 21, Maven 3.9.10, Docker running, Git, curl). jq / helm / istioctl / k6 not installed yet (later phases). |
-| **Blockers** | 1) Lab 1 commit unpushed â€” remote `git@github-personal:5alafawyyy/microservices-professional-diploma-training.git` not found on GitHub. 2) Port 8080 held by unrelated IdentityIQ stack â€” needed before Lab 2. |
+| **Current phase** | Phase 1 — Foundation & Core Patterns |
+| **Current session** | Session 2 — **Lab 2A complete** (6/7 acceptance criteria PASS, 1 manual step) |
+| **Last lab completed** | Lab 2A — API Gateway + Product route (Session 2) |
+| **Next lab** | Lab 2B — Gateway Security (Session 3) |
+| **Platform state** | 4 modules built and verified running: config-server :8888, eureka-server :8761, product-service :8081, api-gateway :8080; postgres container healthy |
+| **Architecture diagram** | [Milestone 2](docs/architecture/CURRENT_ARCHITECTURE.md) — single entry point + routing |
+| **Environment** | PASS for Phase 1 tooling. |
+| **Blockers** | None. |
 
 ### Milestone log
 
 | Date | Event |
 |---|---|
 | 2026-09-28 | Reconnaissance complete: curriculum mapped, labs mapped, prerequisites audited, knowledge base created. |
-| 2026-09-28 | Lab 1 complete: config-server + eureka-server + product-service built and verified end-to-end; ADR-001 recorded; 2 engineering-log entries; commit `session-01: add-product-service-eureka-config` created (push pending â€” remote repo missing). |
+| 2026-09-28 | Lab 1 complete: config-server + eureka-server + product-service built and verified end-to-end; pushed to GitHub. |
+| 2026-09-28 | Lab 2A complete: api-gateway built and verified; port 8080 was free. Unit tests passed. |
+

@@ -1,8 +1,49 @@
-# CURRENT ARCHITECTURE â€” Canonical Visual Mental Model
+# CURRENT ARCHITECTURE — Canonical Visual Mental Model
 
-> **Canonical file (master prompt Â§9.1).** This is the single source of truth for "what the platform looks like right now".
-> Update rules: full redraw at every lab milestone; milestone header at the top; never silently edit â€” each update is its own commit (`docs: update architecture for lab NN`).
+> **Canonical file (master prompt §9.1).** This is the single source of truth for "what the platform looks like right now".
+> Update rules: full redraw at every lab milestone; milestone header at the top; never silently edit — each update is its own commit (docs: update architecture for lab NN).
 > Statuses used in this repo: PASS / NOT VERIFIED / BLOCKED / NOT REVIEWED.
+
+## Milestone 2 — After Lab 02A (Session 2 complete: API Gateway Routing)
+
+**Date:** 2026-09-28
+**State:** 4 runtime members live. API Gateway added as the single entry point.
+
+`
+                        +---------------------------------------------+
+                        ¦        TRAINING PLATFORM — MILESTONE 2      ¦
+                        ¦       "single entry point + routing"        ¦
+                        +---------------------------------------------+
+
+                                         lb://PRODUCT-SERVICE
+             client ----------? +-------------------+
+               :8080            ¦   api-gateway     ¦
+            /api/v1/products    ¦      :8080        ¦
+                                ¦ (GlobalFilter:    ¦
+                                ¦  LoggingFilter)   ¦
+                                ¦ (StripPrefix=0)   ¦
+                                +-------------------+
+                                          ¦
+                                          ?
+                                   product-service
+                                      :8081
+                                (In-memory CRUD)
+                                          ¦
+    config import -------------------------------------------------- register (lb://)
+                             ¦                          ¦
+                             ?                          ?
+                     +----------------+         +---------------+
+                     ¦ config-server  ¦         ¦ eureka-server ¦
+                     ¦     :8888      ¦         ¦     :8761     ¦
+                     +----------------+         +---------------+
+`
+
+**What changed in this milestone:** net-new — pi-gateway (:8080, reactive WebFlux stack).
+Added path routing for /api/v1/products/** forwarding via lb://PRODUCT-SERVICE (Eureka load balancer).
+Added LoggingFilter for pre/post logging. Added X-Platform header in responses.
+Verified: Gateway routes traffic properly to Product Service.
+
+**Observation carried forward:** Product-service registers on a VirtualBox IP. Gateway correctly resolves it.
 
 ## Milestone 1 â€” After Lab 01 (Session 1 complete: config + discovery foundations)
 
@@ -133,6 +174,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 |---|---|---|---|
 | 0 | â€” | 2026-09-28 | Reconnaissance complete. Platform empty. Waiting for Lab 1 confirmation. |
 | 1 | 01 | 2026-09-28 | config-server :8888 (native) + eureka-server :8761 + product-service :8081 (in-memory CRUD) + compose(postgres). Config import and service registration verified. |
+| 2 | 02A | 2026-09-28 | api-gateway :8080. Configured path route /api/v1/products/** to lb://PRODUCT-SERVICE. Added LoggingFilter and X-Platform response header. |
 
 ## How this file is used
 
