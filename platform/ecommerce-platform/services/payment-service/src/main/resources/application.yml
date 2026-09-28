@@ -8,6 +8,15 @@ server:
   port: 8083
 
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/microservices_pro
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
   application:
     name: payment-service
   config:

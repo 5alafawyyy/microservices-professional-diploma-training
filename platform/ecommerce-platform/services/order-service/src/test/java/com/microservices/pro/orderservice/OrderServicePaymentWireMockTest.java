@@ -62,7 +62,12 @@ class OrderServicePaymentWireMockTest {
     private OrderRepository orderRepository;
 
     @MockBean
-    private KafkaTemplate<String, Object> kafkaTemplate;
+    private OutboxRepository outboxRepository;
+
+    @org.springframework.boot.test.mock.mockito.MockBean
+    private org.springframework.kafka.core.KafkaTemplate kafkaTemplate;
+    @org.springframework.beans.factory.annotation.Autowired
+    private com.fasterxml.jackson.databind.ObjectMapper objectMapper;
 
 
     // ── Happy Path: Inventory says available → order proceeds ──────────

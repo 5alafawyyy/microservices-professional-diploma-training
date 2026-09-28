@@ -38,7 +38,10 @@ class OrderSagaTest {
     private OrderService orderService;
 
     @Mock
-    private KafkaTemplate<String, Object> kafkaTemplate;
+    private OutboxRepository outboxRepository;
+
+    @org.mockito.Spy
+    private com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
 
     @Mock
     private OrderRepository orderRepository;
@@ -67,9 +70,6 @@ class OrderSagaTest {
 
         orderService.createOrder(request);
 
-        verify(kafkaTemplate).send(
-                org.mockito.ArgumentMatchers.eq("order-events"),
-                org.mockito.ArgumentMatchers.anyString(),
-                org.mockito.ArgumentMatchers.any(com.microservices.pro.orderservice.events.OrderPlacedEvent.class));
+        verify(outboxRepository).save(org.mockito.ArgumentMatchers.any());
     }
 }

@@ -3,6 +3,6 @@ package com.microservices.pro.paymentservice;
 import java.math.BigDecimal;
 
 /**
- * PaymentRequest — Session 4.
+ * PaymentRequest â€” Session 4.
  */
-public record PaymentRequest(BigDecimal amount) {}
+public record PaymentRequest(String orderId, BigDecimal amount) {}

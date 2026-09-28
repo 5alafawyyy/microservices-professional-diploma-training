@@ -9,7 +9,7 @@ import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
+
 import org.springframework.stereotype.Service;
 import io.micrometer.core.annotation.Timed;
 
@@ -43,7 +43,10 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private KafkaTemplate<String, Object> kafkaTemplate;
+    private OutboxRepository outboxRepository;
+
+    @Autowired
+    private com.fasterxml.jackson.databind.ObjectMapper objectMapper;
 
     // ── Session 4-5: resilience pattern stack on a DIRECT Payment call ──
     //
@@ -120,6 +123,7 @@ public class OrderService {
     // No @CircuitBreaker/@Retry/@Bulkhead/@TimeLimiter here on purpose.
 
     @Timed(value = "order.create", description = "Time to create an order")
+    @org.springframework.transaction.annotation.Transactional
     public OrderResponse createOrder(OrderRequest request) {
         StockCheckResponse stock = inventoryClient.checkStock(request.productId(), request.quantity());
         if (!stock.available()) {
@@ -136,15 +140,12 @@ public class OrderService {
         );
         orderRepository.save(order);
 
-        kafkaTemplate.send("order-events",
-                order.getOrderId(),
-                new OrderPlacedEvent(
-                        order.getOrderId(),
-                        request.productId(),
-                        request.quantity(),
-                        request.amount(),
-                        request.customerId()
-                ));
+        try {
+            String payload = objectMapper.writeValueAsString(new OrderPlacedEvent(order.getOrderId(), request.productId(), request.quantity(), request.amount(), request.customerId()));
+            outboxRepository.save(new OutboxEvent(order.getOrderId(), "OrderPlaced", payload));
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            throw new RuntimeException("Failed to serialize OrderPlacedEvent", e);
+        }
 
         return new OrderResponse(order.getOrderId(), "PENDING", "Order received — processing...");
     }

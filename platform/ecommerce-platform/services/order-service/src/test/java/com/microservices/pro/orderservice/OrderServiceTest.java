@@ -61,7 +61,12 @@ class OrderServiceTest {
     private OrderRepository orderRepository;
 
     @Mock
-    private org.springframework.kafka.core.KafkaTemplate<String, Object> kafkaTemplate;
+    private OutboxRepository outboxRepository;
+
+    @org.springframework.boot.test.mock.mockito.MockBean
+    private org.springframework.kafka.core.KafkaTemplate kafkaTemplate;
+    @org.mockito.Spy
+    private com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
 
     // ── Session 4 ───────────────────────────────────────────────────────
 
@@ -142,9 +147,7 @@ class OrderServiceTest {
 
         assertThat(response.status()).isEqualTo("REJECTED");
         verify(orderRepository, never()).save(org.mockito.ArgumentMatchers.any());
-        verify(kafkaTemplate, never()).send(
-                org.mockito.ArgumentMatchers.anyString(),
-                org.mockito.ArgumentMatchers.any(),
+        verify(outboxRepository, never()).save(
                 org.mockito.ArgumentMatchers.any());
     }
 }
