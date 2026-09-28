@@ -544,6 +544,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 | 11 | 09B | 2026-09-28 | Implemented Pact consumer/provider contracts and WireMock for order-service. |
 | 12 | 10A | 2026-09-28 | Saga Orchestration with State Machine across Order, Inventory, and Payment services. |
 | 13 | 11A | 2026-09-28 | CI/CD pipelines with GitHub Actions. Notification Service added to handle payment-events. |
+| 14 | 11B | 2026-09-28 | Kubernetes manifests and ArgoCD application for GitOps deployments of product-service. |
 
 ## How this file is used
 
