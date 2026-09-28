@@ -1,36 +1,39 @@
-# Labs
+# Microservices Professional Diploma — Lab Documentation
 
-> One directory per lab. Directory naming: use the official lab document name when one exists;
-> otherwise use the deck's own label (`lab-8a`, `lab-9a`, …). Never invent a number the sources do not use.
-> Full mapping and acceptance criteria: `docs/roadmap/SESSION_TO_LAB_MAP.md`.
+This directory contains the documentation for every practical lab and task covered by the 24-session curriculum.
 
-## Per-lab directory template
+## Documentation Classification
+Every lab is strictly classified as one of the following:
+* **OFFICIAL SOURCE LAB**: A standalone lab document exists in the course/reference material (mostly Labs 1–6A).
+* **RECONSTRUCTED TRAINING LAB**: Practical work reconstructed from the session lecture/deck lab instructions, reference implementation, commit history, and acceptance criteria.
 
-```
-docs/labs/lab-NN/
-├─ README.md            before-lab briefing (objective, why, prerequisites, current architecture block)
-├─ acceptance.md        the acceptance criteria as a tickable list + exact evidence commands
-├─ notes.md             my notes while building (free-form)
-└─ evidence/            curl outputs, screenshots, log excerpts proving the criteria
-```
+**Note:** We are not saying that every lab has an official source Markdown file. We are saying that every practical lab/task in our training curriculum has a usable training document here.
 
-## Index
+## Lab Index
 
-| Dir | Session | Lab | Official doc | Status |
-|---|---|---|---|---|
-| `lab-01/` | 1 | Product Service + Eureka + Config | `session-01-lab-01.md` | **complete** — 7/7 PASS |
-| `lab-02/` | 2 | API Gateway + Product route (2A) | `session-02-lab-02.md` | not started |
-| `lab-03/` | 3 | JWT filter + rate limiting (2B) | `session-03-lab-2b.md` | not started |
-| `lab-03-jwt-testing/` | 3 | jwt-generator companion (not graded) | `session-03-jwt-testing.md` | not started |
-| `lab-04/` | 4 | Circuit breaker + retry (3A) | `session-04-lab-3a.md` | not started |
-| `lab-05/` | 5 | Bulkhead + TimeLimiter (3B) | `session-05-lab-3b.md` | not started |
-| `lab-06/` | 6 | Inventory + Feign (4A) | `session-06-lab-4a.md` | not started |
-| `lab-07/` | 7 | Saga happy path + compensation (5A) | `session-07-lab-5a.md` | not started |
-| `lab-08/` | 8 | Redis caching (6A) | `session-08-lab-6a.md` | not started |
-| `lab-08a/` | 8 | Architecture Clinic #1 | deck only (no code) | not started |
-| `lab-9a/` … `lab-16/` | 9–16 | Phase 2 labs | slide-only (reconstructed criteria in PHASE_2_ROADMAP) | not started |
-| `lab-17/` … `lab-23/` | 17–23 | Phase 3 labs (`lab-18`, `lab-19` have official docs) | mixed | not started |
-| `lab-24/` | 24 | Architecture Clinic #2 | deck only | not started |
+| Lab | Session | Topic | Classification |
+|---|---|---|---|
+| [Lab 01](lab-01/README.md) | S01 | Foundation & Service Discovery | OFFICIAL SOURCE LAB |
+| [Lab 02A](lab-02a/README.md) | S02 | API Gateway Routing | OFFICIAL SOURCE LAB |
+| [Lab 02B](lab-02b/README.md) | S03 | API Gateway Security | OFFICIAL SOURCE LAB |
+| [Lab 03A](lab-03a/README.md) | S04 | Circuit Breaker & Retry | OFFICIAL SOURCE LAB |
+| [Lab 03B](lab-03b/README.md) | S05 | Bulkhead & TimeLimiter | OFFICIAL SOURCE LAB |
+| [Lab 04A](lab-04a/README.md) | S06 | OpenFeign & Sync Communication | OFFICIAL SOURCE LAB |
+| [Lab 05A](lab-05a/README.md) | S07 | Kafka Choreography Saga | OFFICIAL SOURCE LAB |
+| [Lab 06A](lab-06a/README.md) | S08 | Postgres & Redis Cache | OFFICIAL SOURCE LAB |
+| [Lab 08A](lab-08a/README.md) | S09 | Docker Containerization | RECONSTRUCTED TRAINING LAB |
+| [Lab 09A](lab-09a/README.md) | S10 | Integration Testing | RECONSTRUCTED TRAINING LAB |
+| [Lab 09B](lab-09b/README.md) | S11 | Contract & Chaos Testing | RECONSTRUCTED TRAINING LAB |
+| [Lab 10A](lab-10a/README.md) | S12 | Orchestration Saga | RECONSTRUCTED TRAINING LAB |
+| [Lab 11A](lab-11a/README.md) | S13 | CI/CD & Notification Service | RECONSTRUCTED TRAINING LAB |
+| [Lab 11B](lab-11b/README.md) | S14 | ArgoCD GitOps | RECONSTRUCTED TRAINING LAB |
+| [Lab 12A](lab-12a/README.md) | S15 | K8s Core Objects | RECONSTRUCTED TRAINING LAB |
+| [Lab 12B](lab-12b/README.md) | S16 | Helm, HPA & RBAC | RECONSTRUCTED TRAINING LAB |
+| [Lab 13](lab-13/README.md) | S17 | Observability Stack | RECONSTRUCTED TRAINING LAB |
+| [Lab 14](lab-14/README.md) | S18 | CQRS Pattern | RECONSTRUCTED TRAINING LAB |
+| [Lab 15](lab-15/README.md) | S19 | Keycloak IdP | RECONSTRUCTED TRAINING LAB |
+| [Lab 16](lab-16/README.md) | S20 | OAuth2 Resource Server | RECONSTRUCTED TRAINING LAB |
+| [Lab 17](lab-17/README.md) | S21 | Istio Service Mesh | RECONSTRUCTED TRAINING LAB |
+| [Lab 18](lab-18/README.md) | S22 | Transactional Outbox | OFFICIAL SOURCE LAB |
+| [Lab 19](lab-19/README.md) | S23 | K6 Load Testing | OFFICIAL SOURCE LAB |
 
-Each directory is created **in the session that owns it** — not upfront (Historical State Rule applies to
-docs as well).

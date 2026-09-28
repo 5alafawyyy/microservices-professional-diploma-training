@@ -30,7 +30,7 @@ microservices-professional-diploma-training/
 ├── docs/
 │   ├── roadmap/               # Training progression trackers
 │   ├── lectures/              # Session notes & material summaries
-│   ├── labs/                  # Frozen historical source lab documents (Labs 1-6A)
+│   ├── labs/                  # Complete practical lab documentation (Official & Reconstructed)
 │   ├── architecture/          # ADRs and current state diagrams
 │   ├── decisions/             # ADR markdown files
 │   ├── testing/               # Test strategy notes
