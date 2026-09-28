@@ -550,6 +550,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 | 17 | 13A | 2026-09-28 | Observability stack added: Zipkin (tracing), Prometheus (metrics), Grafana (dashboards). Structured JSON logging enabled. |
 | 18 | 13B | 2026-09-28 | CQRS Command/Query split implemented in product-service. |
 | 19 | 15 | 2026-09-28 | Keycloak OIDC Provider added for centralized identity and access management. |
+| 20 | 16 | 2026-09-28 | API Gateway migrated to OAuth2 Resource Server. Client Credentials configured for inter-service calls. |
 
 ## How this file is used
 
