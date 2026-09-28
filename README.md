@@ -218,13 +218,13 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 > Block updated at every lab milestone. Statuses: PASS / NOT VERIFIED / BLOCKED / NOT REVIEWED.
 | Item | Value |
 |---|---|
-| **Current phase** | Phase 2 — Containerization & Operations |
-| **Current session** | Session 16 — **Lab 12B complete** (7/7 acceptance criteria PASS) |
-| **Last lab completed** | Lab 12B — HPA + Helm Chart + RBAC (Session 16) |
-| **Next lab** | Session 17 |
-| **Platform state** | product-service managed by Helm with Horizontal Pod Autoscaling (HPA) and Role-Based Access Control (RBAC). |
-| **Architecture diagram** | [Milestone 16](docs/architecture/CURRENT_ARCHITECTURE.md) |
-| **Environment** | PASS for Phase 2 tooling. |
+| **Current phase** | Phase 3 — Observability & Advanced Patterns |
+| **Current session** | Session 17 — **Lab 13A complete** (6/6 acceptance criteria PASS) |
+| **Last lab completed** | Lab 13A — Observability (Session 17) |
+| **Next lab** | Session 18 |
+| **Platform state** | Zipkin distributed tracing, Prometheus metrics collection, Grafana dashboards, and structured JSON logging configured. |
+| **Architecture diagram** | [Milestone 17](docs/architecture/CURRENT_ARCHITECTURE.md) |
+| **Environment** | PASS for Phase 3 tooling. |
 | **Blockers** | None. |
 
 ### Milestone log
@@ -248,3 +248,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 11B complete: Kubernetes manifests and ArgoCD GitOps deployment for product-service. |
 | 2026-09-28 | Lab 12A complete: Added K8s Secrets, Resource Requests/Limits, and Liveness/Readiness probes. |
 | 2026-09-28 | Lab 12B complete: Added HPA, Helm Chart, and RBAC policies. |
+| 2026-09-28 | Lab 13A complete: Integrated Zipkin, Prometheus, Grafana, and structured JSON logging. |
