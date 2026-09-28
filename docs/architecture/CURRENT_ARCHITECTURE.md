@@ -548,6 +548,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 | 15 | 12A | 2026-09-28 | Kubernetes Core concepts applied: Secrets, Resource Requests/Limits, and Liveness/Readiness probes. |
 | 16 | 12B | 2026-09-28 | Helm chart created for product-service, HPA configured, and RBAC applied for least-privilege security. |
 | 17 | 13A | 2026-09-28 | Observability stack added: Zipkin (tracing), Prometheus (metrics), Grafana (dashboards). Structured JSON logging enabled. |
+| 18 | 13B | 2026-09-28 | CQRS Command/Query split implemented in product-service. |
 
 ## How this file is used
 
