@@ -551,6 +551,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 | 18 | 13B | 2026-09-28 | CQRS Command/Query split implemented in product-service. |
 | 19 | 15 | 2026-09-28 | Keycloak OIDC Provider added for centralized identity and access management. |
 | 20 | 16 | 2026-09-28 | API Gateway migrated to OAuth2 Resource Server. Client Credentials configured for inter-service calls. |
+| 21 | 17 | 2026-09-28 | Istio Service Mesh enabled. Strict mTLS enforced, VirtualService/DestinationRule added for 80/20 Canary routing. |
 
 ## How this file is used
 
