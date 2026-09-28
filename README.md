@@ -221,11 +221,11 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | Item | Value |
 |---|---|
 | **Current phase** | Phase 2 — Containerization & Operations |
-| **Current session** | Session 9 — **Lab 8A complete** (8/8 acceptance criteria PASS) |
-| **Last lab completed** | Lab 8A — Dockerize the Platform (Session 9) |
-| **Next lab** | Lab 9A — Centralized Logging with ELK (Session 10) |
-| **Platform state** | 10 containers running (7 Spring Boot services + Postgres + Redis + Kafka). Multi-stage builds, non-root users. |
-| **Architecture diagram** | [Milestone 9](docs/architecture/CURRENT_ARCHITECTURE.md) — containerized platform |
+| **Current session** | Session 10 — **Lab 9A complete** (4/4 acceptance criteria PASS) |
+| **Last lab completed** | Lab 9A — Unit & Integration Testing (Session 10) |
+| **Next lab** | Lab 9B — TestContainers in CI (Session 11) |
+| **Platform state** | 10 containers running. Product Service fully tested via @WebMvcTest and TestContainers. |
+| **Architecture diagram** | [Milestone 10](docs/architecture/CURRENT_ARCHITECTURE.md) — (unchanged from Milestone 9) |
 | **Environment** | PASS for Phase 2 tooling. |
 | **Blockers** | None. |
 
@@ -243,3 +243,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 5A complete: Kafka added to compose. Choreography Saga implemented across Order, Inventory, Payment. |
 | 2026-09-28 | Lab 6A complete: Product Service upgraded to Postgres and Redis caching. |
 | 2026-09-28 | Lab 8A complete: All 7 services containerized using multi-stage Dockerfiles. |
+| 2026-09-28 | Lab 9A complete: Implemented @WebMvcTest, @ParameterizedTest, and TestContainers integration tests for Product Service. |
