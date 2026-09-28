@@ -39,27 +39,33 @@ spec:
                 configMapKeyRef:
                   name: platform-config
                   key: datasource.url
-          # TODO (Session 15): add resource requests/limits
-          # resources:
-          #   requests:
-          #     memory: "256Mi"
-          #     cpu: "250m"
-          #   limits:
-          #     memory: "512Mi"
-          #     cpu: "500m"
 
-          # TODO (Session 15): add readinessProbe
-          # readinessProbe:
-          #   httpGet:
-          #     path: /actuator/health/readiness
-          #     port: 8081
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 10
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: product-service-secret
+                  key: db-password
 
-          # TODO (Session 15): add livenessProbe
-          # livenessProbe:
-          #   httpGet:
-          #     path: /actuator/health/liveness
-          #     port: 8081
-          #   initialDelaySeconds: 60
-          #   periodSeconds: 30
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "200m"
+            limits:
+              memory: "768Mi"
+              cpu: "1000m"
+
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
+
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8081
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 3
