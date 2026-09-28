@@ -219,11 +219,11 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | Item | Value |
 |---|---|
 | **Current phase** | Phase 3 — Observability & Advanced Patterns |
-| **Current session** | Session 18 — **Lab 13B complete** (6/6 acceptance criteria PASS) |
-| **Last lab completed** | Lab 13B — CQRS Command/Query Split (Session 18) |
-| **Next lab** | Session 19 |
-| **Platform state** | CQRS pattern applied to product-service with distinct Command and Query services, event publishing, and cache eviction. |
-| **Architecture diagram** | [Milestone 18](docs/architecture/CURRENT_ARCHITECTURE.md) |
+| **Current session** | Session 19 — **Lab 15 complete** (6/6 acceptance criteria PASS) |
+| **Last lab completed** | Lab 15 — Keycloak + Authorization Code Flow (Session 19) |
+| **Next lab** | Session 20 |
+| **Platform state** | Keycloak deployed and configured as OIDC Provider with ecommerce-platform realm. |
+| **Architecture diagram** | [Milestone 19](docs/architecture/CURRENT_ARCHITECTURE.md) |
 | **Environment** | PASS for Phase 3 tooling. |
 | **Blockers** | None. |
 
@@ -250,3 +250,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 12B complete: Added HPA, Helm Chart, and RBAC policies. |
 | 2026-09-28 | Lab 13A complete: Integrated Zipkin, Prometheus, Grafana, and structured JSON logging. |
 | 2026-09-28 | Lab 13B complete: Applied CQRS Command/Query split to product-service. |
+| 2026-09-28 | Lab 15 complete: Keycloak container added with manual token flow verification. |
