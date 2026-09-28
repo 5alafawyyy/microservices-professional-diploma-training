@@ -543,6 +543,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 | 10 | 09A | 2026-09-28 | Added @WebMvcTest, @ParameterizedTest, and TestContainers to product-service. |
 | 11 | 09B | 2026-09-28 | Implemented Pact consumer/provider contracts and WireMock for order-service. |
 | 12 | 10A | 2026-09-28 | Saga Orchestration with State Machine across Order, Inventory, and Payment services. |
+| 13 | 11A | 2026-09-28 | CI/CD pipelines with GitHub Actions. Notification Service added to handle payment-events. |
 
 ## How this file is used
 
