@@ -4,6 +4,47 @@
 > Update rules: full redraw at every lab milestone; milestone header at the top; never silently edit — each update is its own commit (docs: update architecture for lab NN).
 > Statuses used in this repo: PASS / NOT VERIFIED / BLOCKED / NOT REVIEWED.
 
+## Milestone 3 — After Lab 02B (Session 3 complete: Gateway Security & Rate Limiting)
+
+**Date:** 2026-09-28
+**State:** 5 runtime members live. API Gateway secured with JWT and Rate Limiting. Redis added.
+
+`
+                        +---------------------------------------------+
+                        ¦        TRAINING PLATFORM — MILESTONE 3      ¦
+                        ¦     "secured entry point + rate limiting"   ¦
+                        +---------------------------------------------+
+
+                                         lb://PRODUCT-SERVICE
+             client ----------? +-------------------+ ?------------ +--------------+
+               :8080            ¦   api-gateway     ¦               ¦    redis     ¦
+            /api/v1/products    ¦      :8080        ¦               ¦    :6379     ¦
+                                ¦ (JwtAuthFilter)   ¦               ¦ (Rate Limiter¦
+                                ¦ (RequestRateLim.) ¦               ¦  Token Bucket¦
+                                ¦ (LoggingFilter)   ¦               +--------------+
+                                +-------------------+
+                                          ¦
+                                          ?
+                                   product-service
+                                      :8081
+                                (In-memory CRUD)
+                                          ¦
+    config import -------------------------------------------------- register (lb://)
+                             ¦                          ¦
+                             ?                          ?
+                     +----------------+         +---------------+
+                     ¦ config-server  ¦         ¦ eureka-server ¦
+                     ¦     :8888      ¦         ¦     :8761     ¦
+                     +----------------+         +---------------+
+`
+
+**What changed in this milestone:** net-new — 
+edis (:6379, via docker-compose).
+Added JwtAuthFilter to validate JWT Bearer tokens and extract roles/user ids for non-public routes.
+Added RequestRateLimiter via Redis with Token Bucket (10 replenish rate, 20 burst).
+Verified: /api/v1/products POST returns 401 without token, 429 when rate limit exceeded.
+
+**Observation carried forward:** Product-service registers on a VirtualBox IP. Gateway correctly resolves it.
 ## Milestone 2 — After Lab 02A (Session 2 complete: API Gateway Routing)
 
 **Date:** 2026-09-28
@@ -175,6 +216,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 | 0 | â€” | 2026-09-28 | Reconnaissance complete. Platform empty. Waiting for Lab 1 confirmation. |
 | 1 | 01 | 2026-09-28 | config-server :8888 (native) + eureka-server :8761 + product-service :8081 (in-memory CRUD) + compose(postgres). Config import and service registration verified. |
 | 2 | 02A | 2026-09-28 | api-gateway :8080. Configured path route /api/v1/products/** to lb://PRODUCT-SERVICE. Added LoggingFilter and X-Platform response header. |
+| 3 | 02B | 2026-09-28 | Added Redis :6379 to compose. Added JwtAuthFilter for authentication and RequestRateLimiter using Redis token bucket. |
 
 ## How this file is used
 
