@@ -31,4 +31,4 @@
 The local Git state and the remote references (origin/main) are perfectly synchronized at commit 7e31c2f. If the GitHub web view is not displaying these changes, the likely reasons are:
 1. The web browser is looking at a different branch (if a master branch exists on GitHub, though ls-remote only shows main).
 2. Browser caching / GitHub CDN caching delay.
-3. The URL being checked does not perfectly match the remote (5alafawyyy/microservices-professional-diploma-training).
+3. The URL being checked does not perfectly match the remote (5alafawyyy/microservices-professional-diploma-training).

@@ -27,4 +27,4 @@
 | platform/ecommerce-platform/ | Yes | Original | Codebase root | Present in reference repo | Yes | Keep |
 | scripts/ | No | Original | Helper scripts | Present in reference repo structure implied | N/A | Note missing |
 | k6/ | Yes | Added | Load testing scripts | Copied from reference repo in Lab 19 | Yes | Keep |
-| README.md | Yes | Original | Root project README | Present in reference repo (but heavily modified for training status) | Yes | Keep |
+| README.md | Yes | Original | Root project README | Present in reference repo (but heavily modified for training status) | Yes | Keep |

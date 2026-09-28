@@ -40,4 +40,4 @@ To transition from **"Curriculum Implemented"** to **"Course Completed (Ready to
 3. **Debugging Drill:** Intentionally break a service and manually trace the failure using Zipkin.
 4. **Capstone Execution:** Design and scaffold the new Capstone domain entirely independently.
 
-**CONCLUSION:** The training artifacts are finished. The learning phase is just beginning.
+**CONCLUSION:** The training artifacts are finished. The learning phase is just beginning.
