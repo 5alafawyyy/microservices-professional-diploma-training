@@ -16,11 +16,11 @@ Tracks the distinction between **repository implementation** and **student indep
 | 12-Factor App (Config, Backing Services) | S01 | Implemented | config-server | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | Eureka: registration, discovery, self-preservation | S01 | Implemented | eureka-server | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | Spring Cloud Config Server (native profile) | S01 | Implemented | config-server | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
-| API Gateway (Spring Cloud Gateway, WebFlux) | S02 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
-| Route predicates, lb://, StripPrefix | S02 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
-| GlobalFilter + Ordered, filter ordering | S02 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
-| JWT structure + validation (jjwt) | S03 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
-| Token-bucket rate limiting with Redis | S03 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
+| API Gateway (Spring Cloud Gateway, WebFlux) | S02 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
+| Route predicates, lb://, StripPrefix | S02 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
+| GlobalFilter + Ordered, filter ordering | S02 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
+| JWT structure + validation (jjwt) | S03 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
+| Token-bucket rate limiting with Redis | S03 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | Circuit breaker states + config | S04 | Implemented | order-service | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | Retry with exponential backoff | S04 | Implemented | order-service | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | Bulkhead (semaphore) | S05 | Implemented | order-service | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
@@ -60,9 +60,9 @@ Tracks the distinction between **repository implementation** and **student indep
 | Metrics (Micrometer/Prometheus) | S17 | Implemented | All services | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | Distributed tracing (spans, Zipkin) | S17 | Implemented | All services | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | CQRS + read projections | S18 | Implemented | product-service | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
-| OAuth2 concepts (grants, tokens, claims) | S19 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
+| OAuth2 concepts (grants, tokens, claims) | S19 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | Keycloak realms/clients/users/roles | S19 | Implemented | Keycloak | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
-| Resource server + RBAC in the gateway | S20 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
+| Resource server + RBAC in the gateway | S20 | Implemented | pi-gateway | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | Client-credentials service-to-service auth | S20 | Implemented | order-service | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | Istio: sidecars, VirtualService | S21 | Implemented | k8s/ | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | mTLS STRICT + verification | S21 | Implemented | k8s/ | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
@@ -70,3 +70,4 @@ Tracks the distinction between **repository implementation** and **student indep
 | Idempotency keys | S22 | Implemented | payment-service | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | Load/stress/smoke testing (k6) | S23 | Implemented | k6/ | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 Not Validated | 🔴 NOT READY | - |
 | Architecture decision defence (ADR practice) | S24 | Implemented | docs/architecture/ | 🔴 Not Validated | 🔴 Not Validated | N/A | 🔴 Not Validated | 🔴 NOT READY | - |
+
