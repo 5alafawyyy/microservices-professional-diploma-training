@@ -1,46 +1,51 @@
 # Lab 16 — Session 20
 
-## 1. Classification
-**RECONSTRUCTED TRAINING LAB**
+## Documentation Classification
+* **Source Status:** NO STANDALONE SOURCE LAB
+* **Training Documentation:** RECONSTRUCTED
 
-## 2. Objective
+## 1. Exact Objective
 Migrate Gateway to OAuth2 Resource Server.
 
-## 3. Concepts Taught
-OAuth2, RBAC
+## 2. Problem Being Solved
+Custom `JwtAuthFilter` must be manually maintained.
 
-## 4. Why the lab exists
-To integrate with Keycloak.
+## 3. Architecture
+* **Before the lab:** Custom `JwtAuthFilter` parsing tokens.
+* **After the lab:** Spring Security OAuth2 Resource Server validates tokens via Keycloak JWKS.
+* **Architectural Impact:** Standardizes security.
+
+## 4. Concepts Explained
+OAuth2 Resource Server, JWKS, Role-Based Access Control.
 
 ## 5. Prerequisites
-Lab 15
+Lab 15.
 
-## 6. Tasks
-1. Update Gateway. 2. Configure Client Credentials.
+## 6. Precise Implementation Tasks
+1. Remove JwtAuthFilter.
+2. Add `spring-boot-starter-oauth2-resource-server`.
+3. Configure JWKS URI.
 
-## 7. Technologies Introduced
-Spring Security
+## 7. Important Configuration
+`spring.security.oauth2.resourceserver.jwt.issuer-uri`
 
-## 8. Files/Components Changed
-api-gateway
+## 8. Expected Files/Components
+`api-gateway`
 
 ## 9. Acceptance Criteria
-Token validated via Keycloak
+Gateway automatically validates Keycloak tokens.
 
-## 10. How to Verify
-Call with valid token
+## 10. Verification Commands/Tests
+Send request with Keycloak token.
 
-## 11. Expected Result
-200 OK
+## 11. Expected Behavior
+200 OK.
 
-## 12. Troubleshooting Notes
-Issuer URI mismatch
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** Issuer mismatch; missing ROLE_ prefix in authorities mapping.
+* **Troubleshooting Guidance:** Ensure custom JwtAuthenticationConverter maps Keycloak realm roles correctly.
 
-## 13. Related Architecture Changes
-Security
-
-## 14. Related Commit(s)
-session-20
-
-## 15. Relationship to Source/Reference Material
-Source evidence unavailable / reconstructed from reference implementation.
+## 13. Relationship to Curriculum
+* **Context:** Replaces Lab 02B security.
+* **Source Evidence:** Reconstructed from reference implementation and S20 deck.
+* **Related Commit(s):** `session-20: retire-jwtauthfilter-add-oauth2-resource-server`

@@ -1,46 +1,53 @@
 # Lab 01 — Session 1
 
-## 1. Classification
-**OFFICIAL SOURCE LAB**
+## Documentation Classification
+* **Source Status:** OFFICIAL SOURCE LAB
+* **Training Documentation:** SOURCE-DERIVED
 
-## 2. Objective
-Build the foundation: Config Server, Eureka Server, and Product Service.
+## 1. Exact Objective
+Build the foundational Service Discovery and Centralized Configuration infrastructure, and connect the first microservice.
 
-## 3. Concepts Taught
-Service Discovery, Centralized Configuration
+## 2. Problem Being Solved
+Hardcoded IPs make microservices brittle. Distributed configurations lead to configuration drift.
 
-## 4. Why the lab exists
-To establish the dynamic routing and configuration foundation.
+## 3. Architecture
+* **Before the lab:** Empty repository.
+* **After the lab:** Config Server (:8888), Eureka Server (:8761), and Product Service (:8081) communicating with each other.
+* **Architectural Impact:** Establishes the foundation for all future service discovery.
+
+## 4. Concepts Explained
+Service Registry Pattern, Centralized Configuration (12-Factor App III), Spring Cloud Netflix Eureka.
 
 ## 5. Prerequisites
-None
+Java 21, Maven.
 
-## 6. Tasks
-1. Create Config Server. 2. Create Eureka. 3. Create Product Service.
+## 6. Precise Implementation Tasks
+1. Initialize config-server.
+2. Initialize eureka-server.
+3. Initialize product-service.
+4. Connect product-service to both servers.
 
-## 7. Technologies Introduced
-Spring Cloud Config, Netflix Eureka
+## 7. Important Configuration
+`eureka.client.register-with-eureka=false` (server)
+`spring.config.import=optional:configserver:...`
 
-## 8. Files/Components Changed
-config-server, eureka-server, product-service
+## 8. Expected Files/Components
+`config-server`, `eureka-server`, `product-service`
 
 ## 9. Acceptance Criteria
-Services register as UP in Eureka
+Eureka dashboard shows `PRODUCT-SERVICE` as `UP`.
 
-## 10. How to Verify
-Run mvn spring-boot:run and check Eureka dashboard
+## 10. Verification Commands/Tests
+Run all three applications. Hit `http://localhost:8761`.
 
-## 11. Expected Result
-All 3 services running
+## 11. Expected Behavior
+Product service registers successfully.
 
-## 12. Troubleshooting Notes
-Port conflicts
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** Config server not running before product service starts; port conflicts.
+* **Troubleshooting Guidance:** Ensure Config Server starts first. Check `optional:` prefix in application.yml.
 
-## 13. Related Architecture Changes
-Foundation
-
-## 14. Related Commit(s)
-session-01
-
-## 15. Relationship to Source/Reference Material
-Official document session-01-lab-01.md
+## 13. Relationship to Curriculum
+* **Context:** First foundational lab. Sets up routing for Session 2 (Lab 2A).
+* **Source Evidence:** Official document `session-01-lab-01.md`.
+* **Related Commit(s):** `session-01: add-product-service-eureka-config`

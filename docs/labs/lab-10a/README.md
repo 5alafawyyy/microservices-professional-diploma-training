@@ -1,46 +1,50 @@
 # Lab 10A — Session 12
 
-## 1. Classification
-**RECONSTRUCTED TRAINING LAB**
+## Documentation Classification
+* **Source Status:** NO STANDALONE SOURCE LAB
+* **Training Documentation:** RECONSTRUCTED
 
-## 2. Objective
-Implement Orchestration Saga.
+## 1. Exact Objective
+Migrate from Choreography to Orchestration Saga.
 
-## 3. Concepts Taught
-State Machine, Orchestrator
+## 2. Problem Being Solved
+Choreography becomes impossible to trace and maintain as the number of services grows.
 
-## 4. Why the lab exists
-To centralize complex saga logic.
+## 3. Architecture
+* **Before the lab:** Peer-to-peer event listening (Choreography).
+* **After the lab:** Order Service acts as the centralized Orchestrator (State Machine) dispatching commands.
+* **Architectural Impact:** Shifts complexity from network back to the orchestrator service.
+
+## 4. Concepts Explained
+Orchestration Saga, State Machine, Command/Reply Messaging.
 
 ## 5. Prerequisites
-Lab 09B
+Lab 09B.
 
-## 6. Tasks
-1. Add orchestrator to order-service. 2. Update consumers.
+## 6. Precise Implementation Tasks
+1. Add Orchestrator to order-service.
+2. Change Payment/Inventory to listen for Commands and emit Replies.
 
-## 7. Technologies Introduced
-Spring Kafka
+## 7. Important Configuration
+State machine state transitions.
 
-## 8. Files/Components Changed
-order-service
+## 8. Expected Files/Components
+`order-service` saga package.
 
 ## 9. Acceptance Criteria
-Saga orchestrated successfully
+Orders flow through the Orchestrator state machine successfully.
 
-## 10. How to Verify
-Place order
+## 10. Verification Commands/Tests
+Place order and observe state machine logs.
 
-## 11. Expected Result
-Saga completes
+## 11. Expected Behavior
+Centralized control flow.
 
-## 12. Troubleshooting Notes
-State machine config
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** Deadlocks; missing reply topics.
+* **Troubleshooting Guidance:** Ensure every command has exactly one correlating reply.
 
-## 13. Related Architecture Changes
-Architecture shift
-
-## 14. Related Commit(s)
-session-12
-
-## 15. Relationship to Source/Reference Material
-Source evidence unavailable / reconstructed from reference implementation.
+## 13. Relationship to Curriculum
+* **Context:** Major architectural refactoring of Lab 05A.
+* **Source Evidence:** Reconstructed from reference implementation and S12 deck.
+* **Related Commit(s):** `session-12: migrate-to-saga-orchestration`

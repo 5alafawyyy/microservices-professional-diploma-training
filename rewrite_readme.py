@@ -1,4 +1,6 @@
-# Microservices Professional Diploma — Progressive Training Platform
+﻿import os
+
+readme_content = """# Microservices Professional Diploma — Progressive Training Platform
 
 > A learning repository built **lab by lab**, in the exact historical order the course teaches them.
 > Every session produces a working, tested increment of one real platform: the **Enterprise E-Commerce Platform**.
@@ -30,7 +32,7 @@ microservices-professional-diploma-training/
 ├── docs/
 │   ├── roadmap/               # Training progression trackers
 │   ├── lectures/              # Session notes & material summaries
-│   ├── labs/                  # Complete practical lab documentation containing both official source-derived and reconstructed training labs.
+│   ├── labs/                  # Frozen historical source lab documents (Labs 1-6A)
 │   ├── architecture/          # ADRs and current state diagrams
 │   ├── decisions/             # ADR markdown files
 │   ├── testing/               # Test strategy notes
@@ -124,3 +126,7 @@ Identity is set **repository-local only** — global git config is never modifie
 ## Note on Special Characters
 
 If you encounter any special characters not understood by the system or editor, please ensure that your environment and text editors are fully configured to use UTF-8 encoding. This issue typically happens when files are read or written using cp1252 (Windows-1252) instead of UTF-8.
+"""
+
+with open('README.md', 'w', encoding='utf-8') as f:
+    f.write(readme_content)

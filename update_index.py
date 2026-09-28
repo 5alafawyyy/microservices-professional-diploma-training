@@ -1,4 +1,4 @@
-# Microservices Professional Diploma — Lab Documentation
+﻿content = """# Microservices Professional Diploma — Lab Documentation
 
 This directory contains the documentation for every practical lab and task covered by the 24-session curriculum.
 
@@ -43,3 +43,9 @@ Every lab is strictly classified using a two-axis model:
 | [Lab 18](lab-18/README.md) | S22 | Transactional Outbox | OFFICIAL SOURCE LAB | SOURCE-DERIVED / EXPANDED |
 | [Lab 19](lab-19/README.md) | S23 | K6 Load Testing | OFFICIAL SOURCE LAB | SOURCE-DERIVED / EXPANDED |
 
+"""
+
+with open('docs/labs/README.md', 'w', encoding='utf-8') as f:
+    f.write(content)
+
+print("Updated docs/labs/README.md")

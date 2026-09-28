@@ -1,46 +1,51 @@
 # Lab 02B — Session 3
 
-## 1. Classification
-**OFFICIAL SOURCE LAB**
+## Documentation Classification
+* **Source Status:** OFFICIAL SOURCE LAB
+* **Training Documentation:** SOURCE-DERIVED
 
-## 2. Objective
-Secure the API Gateway and add rate limiting.
+## 1. Exact Objective
+Secure the Gateway with JWT and add Redis rate limiting.
 
-## 3. Concepts Taught
-JWT Validation, Rate Limiting
+## 2. Problem Being Solved
+APIs are exposed without authentication and vulnerable to DoS attacks.
 
-## 4. Why the lab exists
-To secure endpoints and prevent abuse.
+## 3. Architecture
+* **Before the lab:** Open, unprotected Gateway.
+* **After the lab:** Gateway with `JwtAuthFilter` and Redis Token-Bucket `RequestRateLimiter`.
+* **Architectural Impact:** Moves security to the edge.
+
+## 4. Concepts Explained
+JWT structure, Global/Route Filters, Token-Bucket Rate Limiting.
 
 ## 5. Prerequisites
-Lab 02A
+Lab 02A, Redis.
 
-## 6. Tasks
-1. Add JwtAuthFilter. 2. Add Redis rate limiter.
+## 6. Precise Implementation Tasks
+1. Add jjwt.
+2. Implement JwtAuthFilter.
+3. Add Redis RequestRateLimiter config.
 
-## 7. Technologies Introduced
-jjwt, Redis
+## 7. Important Configuration
+`spring.cloud.gateway.default-filters`, `redis-rate-limiter.replenishRate`.
 
-## 8. Files/Components Changed
-api-gateway
+## 8. Expected Files/Components
+`api-gateway/.../JwtAuthFilter.java`
 
 ## 9. Acceptance Criteria
-Unauthenticated requests rejected with 401
+Unauthenticated requests yield 401; excessive requests yield 429.
 
-## 10. How to Verify
-Send request without token
+## 10. Verification Commands/Tests
+Send request without Authorization header.
 
-## 11. Expected Result
-401 Unauthorized
+## 11. Expected Behavior
+401 Unauthorized.
 
-## 12. Troubleshooting Notes
-Redis connection refused
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** Redis connection refused; JWT signature mismatch.
+* **Troubleshooting Guidance:** Ensure Redis is running. Check JWT secret consistency.
 
-## 13. Related Architecture Changes
-Security layer
-
-## 14. Related Commit(s)
-session-03
-
-## 15. Relationship to Source/Reference Material
-Official document session-03-lab-2b.md
+## 13. Relationship to Curriculum
+* **Context:** Builds on Lab 2A. Security logic later migrated to OAuth2 in Session 20.
+* **Source Evidence:** Official document `session-03-lab-2b.md`.
+* **Related Commit(s):** `session-03: add-jwt-auth-and-rate-limiting`

@@ -1,46 +1,50 @@
 # Lab 13 — Session 17
 
-## 1. Classification
-**RECONSTRUCTED TRAINING LAB**
+## Documentation Classification
+* **Source Status:** NO STANDALONE SOURCE LAB
+* **Training Documentation:** RECONSTRUCTED
 
-## 2. Objective
-Implement observability stack.
+## 1. Exact Objective
+Integrate the Observability Stack (Tracing, Metrics, Logging).
 
-## 3. Concepts Taught
-Micrometer, Zipkin, Grafana
+## 2. Problem Being Solved
+Cannot trace a request across 4 different microservices.
 
-## 4. Why the lab exists
-To trace requests and monitor metrics.
+## 3. Architecture
+* **Before the lab:** Scattered logs in different containers.
+* **After the lab:** Micrometer tracing propagates Trace IDs; Zipkin aggregates them.
+* **Architectural Impact:** Provides critical production visibility.
+
+## 4. Concepts Explained
+Distributed Tracing, Span ID, Trace ID, Prometheus Metrics.
 
 ## 5. Prerequisites
-Lab 12B
+Phase 2 completion.
 
-## 6. Tasks
-1. Add Micrometer. 2. Configure Zipkin.
+## 6. Precise Implementation Tasks
+1. Add Micrometer/Zipkin dependencies.
+2. Configure sampling rate.
 
-## 7. Technologies Introduced
-Micrometer
+## 7. Important Configuration
+`management.tracing.sampling.probability=1.0`.
 
-## 8. Files/Components Changed
-All services
+## 8. Expected Files/Components
+All `pom.xml`, `application.yml`
 
 ## 9. Acceptance Criteria
-Traces appear in Zipkin
+Single request to Gateway appears as a unified trace graph in Zipkin.
 
-## 10. How to Verify
-Generate traffic
+## 10. Verification Commands/Tests
+Send request; open Zipkin UI `:9411`.
 
-## 11. Expected Result
-Traces visible
+## 11. Expected Behavior
+Trace showing Gateway -> Order -> Inventory.
 
-## 12. Troubleshooting Notes
-Sampling rate
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** Missing B3 headers; broken context propagation in async/feign calls.
+* **Troubleshooting Guidance:** Ensure Feign/Kafka are instrumented to pass headers.
 
-## 13. Related Architecture Changes
-Observability
-
-## 14. Related Commit(s)
-session-17
-
-## 15. Relationship to Source/Reference Material
-Source evidence unavailable / reconstructed from reference implementation.
+## 13. Relationship to Curriculum
+* **Context:** First lab of Phase 3.
+* **Source Evidence:** Reconstructed from reference implementation and S17 deck.
+* **Related Commit(s):** `session-17: add-observability-zipkin-micrometer`

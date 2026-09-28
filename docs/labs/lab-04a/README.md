@@ -1,46 +1,51 @@
 # Lab 04A — Session 6
 
-## 1. Classification
-**OFFICIAL SOURCE LAB**
+## Documentation Classification
+* **Source Status:** OFFICIAL SOURCE LAB
+* **Training Documentation:** SOURCE-DERIVED
 
-## 2. Objective
-Implement Inventory Service and OpenFeign communication.
+## 1. Exact Objective
+Build Inventory Service and implement sync communication via OpenFeign.
 
-## 3. Concepts Taught
-OpenFeign, Sync Communication
+## 2. Problem Being Solved
+Manual RestTemplate calls are verbose and hard to maintain.
 
-## 4. Why the lab exists
-To allow inter-service sync calls.
+## 3. Architecture
+* **Before the lab:** Hardcoded RestTemplate or WebClient usage.
+* **After the lab:** Declarative Feign interfaces used for synchronous inter-service communication.
+* **Architectural Impact:** Standardizes synchronous HTTP calls.
+
+## 4. Concepts Explained
+Spring Cloud OpenFeign, ErrorDecoder, Declarative REST Clients.
 
 ## 5. Prerequisites
-Lab 03B
+Lab 03B.
 
-## 6. Tasks
-1. Build inventory-service. 2. Add Feign client to order-service.
+## 6. Precise Implementation Tasks
+1. Scaffold inventory-service.
+2. Create Feign client in order-service.
+3. Map Feign exceptions.
 
-## 7. Technologies Introduced
-Spring Cloud OpenFeign
+## 7. Important Configuration
+`@EnableFeignClients`, `spring.cloud.openfeign.client.config.*`
 
-## 8. Files/Components Changed
-inventory-service, order-service
+## 8. Expected Files/Components
+`inventory-service`, `order-service`
 
 ## 9. Acceptance Criteria
-Order service successfully calls inventory service
+Order service seamlessly fetches stock from inventory via Feign.
 
-## 10. How to Verify
-Place an order
+## 10. Verification Commands/Tests
+Place order requiring stock check.
 
-## 11. Expected Result
-Inventory updated
+## 11. Expected Behavior
+Successful stock validation across service boundaries.
 
-## 12. Troubleshooting Notes
-Feign configuration
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** Feign URL mapping errors; unhandled FeignExceptions.
+* **Troubleshooting Guidance:** Verify Eureka registration. Implement Custom ErrorDecoder to unwrap exceptions.
 
-## 13. Related Architecture Changes
-Inter-service sync
-
-## 14. Related Commit(s)
-session-06
-
-## 15. Relationship to Source/Reference Material
-Source evidence unavailable / reconstructed from reference implementation.
+## 13. Relationship to Curriculum
+* **Context:** Prepares the sync baseline before Kafka async is introduced in Session 7.
+* **Source Evidence:** Official document missing locally; reconstructed from curriculum map and reference implementation.
+* **Related Commit(s):** `session-06: add-inventory-and-feign-clients`

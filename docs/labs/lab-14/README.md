@@ -1,46 +1,49 @@
 # Lab 14 — Session 18
 
-## 1. Classification
-**RECONSTRUCTED TRAINING LAB**
+## Documentation Classification
+* **Source Status:** NO STANDALONE SOURCE LAB
+* **Training Documentation:** RECONSTRUCTED
 
-## 2. Objective
-Implement CQRS pattern.
+## 1. Exact Objective
+Implement CQRS (Command Query Responsibility Segregation).
 
-## 3. Concepts Taught
-Command/Query Segregation
+## 2. Problem Being Solved
+Read-heavy traffic locks the database while write-heavy operations occur.
 
-## 4. Why the lab exists
-To optimize read/write paths.
+## 3. Architecture
+* **Before the lab:** Single service model for reads and writes.
+* **After the lab:** Product service split into Command paths (writes) and Query paths (reads projections).
+* **Architectural Impact:** Prepares architecture for event sourcing and massive read scaling.
+
+## 4. Concepts Explained
+CQRS, Read Projections.
 
 ## 5. Prerequisites
-Lab 13
+Lab 13.
 
-## 6. Tasks
-1. Separate read/write models in product-service.
+## 6. Precise Implementation Tasks
+1. Refactor product-service to use separate Command/Query objects.
 
-## 7. Technologies Introduced
-Spring Data
+## 7. Important Configuration
+Package structure changes.
 
-## 8. Files/Components Changed
-product-service
+## 8. Expected Files/Components
+`product-service`
 
 ## 9. Acceptance Criteria
-Read/Write models separate
+Code cleanly separates read and write operations.
 
-## 10. How to Verify
-Code inspection
+## 10. Verification Commands/Tests
+Inspect code structure.
 
-## 11. Expected Result
-CQRS applied
+## 11. Expected Behavior
+CQRS enforced at class/package level.
 
-## 12. Troubleshooting Notes
-Data synchronization
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** Eventual consistency lag between write and read DBs (if separated).
+* **Troubleshooting Guidance:** Verify synchronization mechanism.
 
-## 13. Related Architecture Changes
-Architecture
-
-## 14. Related Commit(s)
-session-18
-
-## 15. Relationship to Source/Reference Material
-Source evidence unavailable / reconstructed from reference implementation.
+## 13. Relationship to Curriculum
+* **Context:** Advanced design pattern.
+* **Source Evidence:** Reconstructed from reference implementation and S18 deck.
+* **Related Commit(s):** `session-18: implement-cqrs-pattern`

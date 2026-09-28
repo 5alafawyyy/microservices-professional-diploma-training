@@ -1,46 +1,51 @@
 # Lab 03B — Session 5
 
-## 1. Classification
-**OFFICIAL SOURCE LAB**
+## Documentation Classification
+* **Source Status:** OFFICIAL SOURCE LAB
+* **Training Documentation:** SOURCE-DERIVED
 
-## 2. Objective
-Add Bulkhead and TimeLimiter to Order Service.
+## 1. Exact Objective
+Add Bulkhead and TimeLimiter to isolate thread exhaustion.
 
-## 3. Concepts Taught
-Resilience4j Bulkhead/TimeLimiter
+## 2. Problem Being Solved
+Slow downstream services cause upstream thread pools to fill up, hanging the entire application.
 
-## 4. Why the lab exists
-To prevent resource exhaustion and hang.
+## 3. Architecture
+* **Before the lab:** Order service vulnerable to thread exhaustion if Payment service is slow but not throwing errors.
+* **After the lab:** Order service limits concurrent calls (Bulkhead) and enforces strict async timeouts (TimeLimiter).
+* **Architectural Impact:** Prevents cascading resource exhaustion.
+
+## 4. Concepts Explained
+Semaphore Bulkhead, ThreadPool Bulkhead, TimeLimiter, Async execution.
 
 ## 5. Prerequisites
-Lab 03A
+Lab 03A.
 
-## 6. Tasks
-1. Add Bulkhead. 2. Add TimeLimiter (async).
+## 6. Precise Implementation Tasks
+1. Add @Bulkhead.
+2. Add @TimeLimiter.
+3. Return CompletableFuture.
 
-## 7. Technologies Introduced
-Resilience4j
+## 7. Important Configuration
+`resilience4j.timelimiter.instances.*`, `resilience4j.bulkhead.instances.*`
 
-## 8. Files/Components Changed
-order-service
+## 8. Expected Files/Components
+`order-service/.../PaymentClient.java`
 
 ## 9. Acceptance Criteria
-Timeout triggers fallback
+Calls exceeding timeout immediately trigger fallback; concurrent calls are capped.
 
-## 10. How to Verify
-Simulate delay in payment-service
+## 10. Verification Commands/Tests
+Add `Thread.sleep` to payment service.
 
-## 11. Expected Result
-Fallback response
+## 11. Expected Behavior
+TimeLimiter triggers fallback after configured duration.
 
-## 12. Troubleshooting Notes
-Async context issues
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** TimeLimiter without CompletableFuture return type fails at runtime.
+* **Troubleshooting Guidance:** Ensure method returns `CompletableFuture` and class is proxied by Spring.
 
-## 13. Related Architecture Changes
-Resilience layer
-
-## 14. Related Commit(s)
-session-05
-
-## 15. Relationship to Source/Reference Material
-Official document session-05-lab-3b.md
+## 13. Relationship to Curriculum
+* **Context:** Completes Resilience4j stack for Order Service.
+* **Source Evidence:** Official document `session-05-lab-3b.md`.
+* **Related Commit(s):** `session-05: add-bulkhead-and-timelimiter`

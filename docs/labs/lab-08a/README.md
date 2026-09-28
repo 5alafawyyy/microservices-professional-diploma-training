@@ -1,46 +1,50 @@
 # Lab 08A — Session 9
 
-## 1. Classification
-**RECONSTRUCTED TRAINING LAB**
+## Documentation Classification
+* **Source Status:** NO STANDALONE SOURCE LAB
+* **Training Documentation:** RECONSTRUCTED
 
-## 2. Objective
-Containerize the microservices platform.
+## 1. Exact Objective
+Containerize the platform using Docker multi-stage builds.
 
-## 3. Concepts Taught
-Docker, Multi-stage builds
+## 2. Problem Being Solved
+Inconsistent environments between dev and prod ('It works on my machine').
 
-## 4. Why the lab exists
-To standardize deployment.
+## 3. Architecture
+* **Before the lab:** Services run manually via `mvn spring-boot:run`.
+* **After the lab:** All 7 services packaged into Docker images and orchestrated via Docker Compose.
+* **Architectural Impact:** Standardizes deployment artifact.
+
+## 4. Concepts Explained
+Multi-stage Dockerfiles, Docker Compose networking.
 
 ## 5. Prerequisites
-Lab 06A
+Phase 1 completion.
 
-## 6. Tasks
-1. Write Dockerfiles. 2. Update docker-compose.yml.
+## 6. Precise Implementation Tasks
+1. Write Dockerfile for each service.
+2. Update docker-compose.yml to include app services.
 
-## 7. Technologies Introduced
-Docker
+## 7. Important Configuration
+`docker-compose.yml` networks, environment variables.
 
-## 8. Files/Components Changed
-All services
+## 8. Expected Files/Components
+`Dockerfile` (in every service), root `docker-compose.yml`
 
 ## 9. Acceptance Criteria
-Containers start successfully
+`docker compose up` brings up the entire platform successfully.
 
-## 10. How to Verify
-docker compose up
+## 10. Verification Commands/Tests
+Run `docker compose up -d`.
 
-## 11. Expected Result
-All healthy
+## 11. Expected Behavior
+All containers healthy and inter-communicating via Docker DNS.
 
-## 12. Troubleshooting Notes
-Network aliases
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** Services fail to start because Config/Eureka are not ready.
+* **Troubleshooting Guidance:** Use `depends_on: condition: service_healthy` in compose.
 
-## 13. Related Architecture Changes
-Containerization
-
-## 14. Related Commit(s)
-session-09
-
-## 15. Relationship to Source/Reference Material
-Source evidence unavailable / reconstructed from reference implementation.
+## 13. Relationship to Curriculum
+* **Context:** Prerequisite for K8s deployment in Session 15.
+* **Source Evidence:** Reconstructed from reference implementation, git history, and S09 deck.
+* **Related Commit(s):** `session-09: add-multi-stage-dockerfiles`

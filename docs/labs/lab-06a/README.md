@@ -1,46 +1,52 @@
 # Lab 06A — Session 8
 
-## 1. Classification
-**OFFICIAL SOURCE LAB**
+## Documentation Classification
+* **Source Status:** OFFICIAL SOURCE LAB
+* **Training Documentation:** SOURCE-DERIVED
 
-## 2. Objective
-Add Postgres and Redis caching to Product Service.
+## 1. Exact Objective
+Add PostgreSQL persistence and Redis Cache-Aside to Product Service.
 
-## 3. Concepts Taught
-Relational DB, Cache-Aside
+## 2. Problem Being Solved
+In-memory stores lose data on restart. Repeated DB reads for static products degrade performance.
 
-## 4. Why the lab exists
-To add persistence and improve read performance.
+## 3. Architecture
+* **Before the lab:** In-memory lists inside service classes.
+* **After the lab:** Postgres JPA repository with `@Cacheable` Redis layer in front.
+* **Architectural Impact:** Establishes standard data layer.
+
+## 4. Concepts Explained
+Spring Data JPA, Cache-Aside Pattern, Cache Eviction.
 
 ## 5. Prerequisites
-Lab 05A
+Lab 05A.
 
-## 6. Tasks
-1. Add Postgres JPA. 2. Add Redis caching.
+## 6. Precise Implementation Tasks
+1. Configure Postgres.
+2. Migrate Product to JPA Entity.
+3. Add `@EnableCaching`.
+4. Annotate methods.
 
-## 7. Technologies Introduced
-Spring Data JPA, Spring Cache
+## 7. Important Configuration
+`spring.datasource.url`, `spring.cache.type=redis`.
 
-## 8. Files/Components Changed
-product-service
+## 8. Expected Files/Components
+`product-service` Entity, Repository, Service classes.
 
 ## 9. Acceptance Criteria
-Products cached in Redis
+Products persist across restarts. Fetching same product twice hits Redis.
 
-## 10. How to Verify
-Fetch product twice
+## 10. Verification Commands/Tests
+Restart service, data remains. Check Redis CLI `KEYS *`.
 
-## 11. Expected Result
-Second fetch is faster (cache hit)
+## 11. Expected Behavior
+Fast reads from Redis, writes update Postgres and evict cache.
 
-## 12. Troubleshooting Notes
-Redis serialization
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** Object serialization failures in Redis.
+* **Troubleshooting Guidance:** Ensure Product entity implements `Serializable` or configure JSON serializer for RedisTemplate.
 
-## 13. Related Architecture Changes
-Data layer
-
-## 14. Related Commit(s)
-session-08
-
-## 15. Relationship to Source/Reference Material
-Official document session-08-lab-6a.md
+## 13. Relationship to Curriculum
+* **Context:** Closes out Phase 1 foundation.
+* **Source Evidence:** Official document `session-08-lab-6a.md`.
+* **Related Commit(s):** `session-08: add-postgres-and-redis-caching`

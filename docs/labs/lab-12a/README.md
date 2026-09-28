@@ -1,46 +1,51 @@
 # Lab 12A — Session 15
 
-## 1. Classification
-**RECONSTRUCTED TRAINING LAB**
+## Documentation Classification
+* **Source Status:** NO STANDALONE SOURCE LAB
+* **Training Documentation:** RECONSTRUCTED
 
-## 2. Objective
-Implement core K8s objects.
+## 1. Exact Objective
+Write core Kubernetes manifests (Deployment, Service).
 
-## 3. Concepts Taught
-Deployments, Services, Probes
+## 2. Problem Being Solved
+Docker Compose does not provide self-healing or cluster orchestration.
 
-## 4. Why the lab exists
-To run services in K8s.
+## 3. Architecture
+* **Before the lab:** Docker Compose.
+* **After the lab:** Kubernetes cluster running product-service.
+* **Architectural Impact:** Moves platform to enterprise container orchestration.
+
+## 4. Concepts Explained
+Pods, Deployments, Services, Liveness/Readiness Probes.
 
 ## 5. Prerequisites
-Lab 11B
+Lab 11B.
 
-## 6. Tasks
-1. Write Deployment/Service manifests.
+## 6. Precise Implementation Tasks
+1. Write `deployment.yaml`.
+2. Write `service.yaml`.
+3. Add actuator probes.
 
-## 7. Technologies Introduced
-Kubernetes
+## 7. Important Configuration
+`livenessProbe`, `readinessProbe` paths.
 
-## 8. Files/Components Changed
-k8s/manifests
+## 8. Expected Files/Components
+`k8s/manifests/`
 
 ## 9. Acceptance Criteria
-Pods running
+Pod schedules and reports healthy via Readiness probe.
 
-## 10. How to Verify
-kubectl get pods
+## 10. Verification Commands/Tests
+`kubectl get pods -w`.
 
-## 11. Expected Result
-Running
+## 11. Expected Behavior
+Pod reaches `1/1 Running`.
 
-## 12. Troubleshooting Notes
-Image pull errors
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** CrashLoopBackOff due to missing DB.
+* **Troubleshooting Guidance:** `kubectl describe pod` to view probe failures.
 
-## 13. Related Architecture Changes
-Kubernetes
-
-## 14. Related Commit(s)
-session-15
-
-## 15. Relationship to Source/Reference Material
-Source evidence unavailable / reconstructed from reference implementation.
+## 13. Relationship to Curriculum
+* **Context:** First K8s lab. Prepares for Helm.
+* **Source Evidence:** Reconstructed from reference implementation and S15 deck.
+* **Related Commit(s):** `session-15: add-kubernetes-core-manifests`

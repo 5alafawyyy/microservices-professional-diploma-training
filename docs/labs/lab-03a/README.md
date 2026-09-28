@@ -1,46 +1,51 @@
 # Lab 03A — Session 4
 
-## 1. Classification
-**OFFICIAL SOURCE LAB**
+## Documentation Classification
+* **Source Status:** OFFICIAL SOURCE LAB
+* **Training Documentation:** SOURCE-DERIVED
 
-## 2. Objective
-Scaffold Order & Payment, add Circuit Breaker and Retry.
+## 1. Exact Objective
+Scaffold Order and Payment services; apply Circuit Breaker and Retry.
 
-## 3. Concepts Taught
-Resilience4j CircuitBreaker/Retry
+## 2. Problem Being Solved
+Synchronous inter-service calls fail cascadingly when downstream services crash.
 
-## 4. Why the lab exists
-To handle downstream failures gracefully.
+## 3. Architecture
+* **Before the lab:** No inter-service resilience.
+* **After the lab:** Order Service protected by Resilience4j Circuit Breaker against Payment Service failures.
+* **Architectural Impact:** Introduces fault tolerance.
+
+## 4. Concepts Explained
+Circuit Breaker states (Closed, Open, Half-Open), Exponential Backoff Retry.
 
 ## 5. Prerequisites
-Lab 02B
+Lab 02B.
 
-## 6. Tasks
-1. Scaffold services. 2. Add CB/Retry.
+## 6. Precise Implementation Tasks
+1. Scaffold services.
+2. Add Resilience4j dependency.
+3. Add @CircuitBreaker and @Retry.
 
-## 7. Technologies Introduced
-Resilience4j
+## 7. Important Configuration
+`resilience4j.circuitbreaker.instances.*`
 
-## 8. Files/Components Changed
-order-service, payment-service
+## 8. Expected Files/Components
+`order-service`, `payment-service`
 
 ## 9. Acceptance Criteria
-Fallback method invoked on failure
+Order service invokes fallback method when payment service is down.
 
-## 10. How to Verify
-Stop payment-service and hit order-service
+## 10. Verification Commands/Tests
+Stop payment-service and hit order creation.
 
-## 11. Expected Result
-Fallback response
+## 11. Expected Behavior
+Fallback response triggered immediately without waiting for standard HTTP timeout.
 
-## 12. Troubleshooting Notes
-Fallback signature mismatch
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** Fallback method signature mismatch (must match original method + Throwable).
+* **Troubleshooting Guidance:** Check Actuator `/actuator/health` to see Circuit Breaker state.
 
-## 13. Related Architecture Changes
-Resilience layer
-
-## 14. Related Commit(s)
-session-04
-
-## 15. Relationship to Source/Reference Material
-Official document session-04-lab-3a.md
+## 13. Relationship to Curriculum
+* **Context:** First resilience lab. Followed by Bulkhead in Lab 3B.
+* **Source Evidence:** Official document `session-04-lab-3a.md`.
+* **Related Commit(s):** `session-04: add-order-payment-and-circuit-breaker`

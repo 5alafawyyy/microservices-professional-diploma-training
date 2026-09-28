@@ -1,46 +1,49 @@
 # Lab 11B — Session 14
 
-## 1. Classification
-**RECONSTRUCTED TRAINING LAB**
+## Documentation Classification
+* **Source Status:** NO STANDALONE SOURCE LAB
+* **Training Documentation:** RECONSTRUCTED
 
-## 2. Objective
-Deploy with ArgoCD GitOps.
+## 1. Exact Objective
+Implement ArgoCD for GitOps deployment.
 
-## 3. Concepts Taught
-GitOps, ArgoCD
+## 2. Problem Being Solved
+Manual `kubectl apply` leads to configuration drift between cluster and git.
 
-## 4. Why the lab exists
-To automate K8s deployment.
+## 3. Architecture
+* **Before the lab:** Push-based or manual deployments.
+* **After the lab:** ArgoCD continuously syncs cluster state with Git.
+* **Architectural Impact:** Changes deployment paradigm to Pull-based.
+
+## 4. Concepts Explained
+GitOps, ArgoCD Application CRD.
 
 ## 5. Prerequisites
-Lab 11A
+Lab 11A.
 
-## 6. Tasks
-1. Write ArgoCD app manifests.
+## 6. Precise Implementation Tasks
+1. Create ArgoCD manifest for product-service.
 
-## 7. Technologies Introduced
-ArgoCD
+## 7. Important Configuration
+`Application` spec pointing to repo URL.
 
-## 8. Files/Components Changed
-k8s/argocd
+## 8. Expected Files/Components
+`k8s/argocd/`
 
 ## 9. Acceptance Criteria
-App deployed via Argo
+ArgoCD detects changes in Git and syncs to cluster.
 
-## 10. How to Verify
-Check Argo UI
+## 10. Verification Commands/Tests
+Apply ArgoCD app, check UI.
 
-## 11. Expected Result
-Synced
+## 11. Expected Behavior
+Sync status: Synced.
 
-## 12. Troubleshooting Notes
-Cluster access
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** ArgoCD cannot reach private GitHub repo.
+* **Troubleshooting Guidance:** Check repository credentials in ArgoCD.
 
-## 13. Related Architecture Changes
-Deployment
-
-## 14. Related Commit(s)
-session-14
-
-## 15. Relationship to Source/Reference Material
-Source evidence unavailable / reconstructed from reference implementation.
+## 13. Relationship to Curriculum
+* **Context:** Follows CI pipeline.
+* **Source Evidence:** Reconstructed from reference implementation and S14 deck.
+* **Related Commit(s):** `session-14: add-argocd-gitops-manifests`

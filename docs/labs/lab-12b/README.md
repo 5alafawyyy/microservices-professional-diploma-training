@@ -1,46 +1,51 @@
 # Lab 12B — Session 16
 
-## 1. Classification
-**RECONSTRUCTED TRAINING LAB**
+## Documentation Classification
+* **Source Status:** NO STANDALONE SOURCE LAB
+* **Training Documentation:** RECONSTRUCTED
 
-## 2. Objective
-Implement advanced K8s objects.
+## 1. Exact Objective
+Implement Helm charts, HPA, and RBAC.
 
-## 3. Concepts Taught
-Helm, HPA, RBAC
+## 2. Problem Being Solved
+Raw YAML files are hard to template. Manual scaling cannot handle sudden load spikes.
 
-## 4. Why the lab exists
-To manage and scale K8s apps.
+## 3. Architecture
+* **Before the lab:** Static replicas in raw YAML.
+* **After the lab:** Templated Helm chart with Horizontal Pod Autoscaling based on CPU.
+* **Architectural Impact:** Enables dynamic elasticity and secure templating.
+
+## 4. Concepts Explained
+Helm, HPA, RBAC (ServiceAccounts, Roles).
 
 ## 5. Prerequisites
-Lab 12A
+Lab 12A.
 
-## 6. Tasks
-1. Create Helm chart. 2. Add HPA.
+## 6. Precise Implementation Tasks
+1. Create Helm chart.
+2. Add HPA resource.
+3. Configure RBAC.
 
-## 7. Technologies Introduced
-Helm
+## 7. Important Configuration
+`targetCPUUtilizationPercentage`.
 
-## 8. Files/Components Changed
-k8s/helm
+## 8. Expected Files/Components
+`k8s/helm/`
 
 ## 9. Acceptance Criteria
-HPA scales pods
+HPA dynamically creates pods when CPU spikes.
 
-## 10. How to Verify
-Load test
+## 10. Verification Commands/Tests
+`helm install`, run load generator, `kubectl get hpa`.
 
-## 11. Expected Result
-Multiple replicas
+## 11. Expected Behavior
+Replica count increases under load.
 
-## 12. Troubleshooting Notes
-Metrics server
+## 12. Common Failure Modes & Troubleshooting
+* **Failure Mode:** Metrics server not installed (HPA shows `<unknown>/50%`).
+* **Troubleshooting Guidance:** Ensure K8s cluster has metrics-server enabled.
 
-## 13. Related Architecture Changes
-Kubernetes
-
-## 14. Related Commit(s)
-session-16
-
-## 15. Relationship to Source/Reference Material
-Source evidence unavailable / reconstructed from reference implementation.
+## 13. Relationship to Curriculum
+* **Context:** Completes K8s phase.
+* **Source Evidence:** Reconstructed from reference implementation and S16 deck.
+* **Related Commit(s):** `session-16: add-helm-hpa-and-rbac`
