@@ -221,7 +221,7 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | **Current phase** | Phase 3 â€” Observability & Advanced Patterns |
 | **Current session** | Session 21 â€” **Lab 17 complete** (6/6 acceptance criteria PASS) |
 | **Last lab completed** | Lab 19 — Performance & Load Testing (Session 23) |
-| **Next lab** | **COURSE COMPLETED** |
+| **Next lab** | **Sessions 1–24 curriculum implementation/review completed; independent knowledge validation and capstone readiness assessment remain.** |
 | **Platform state** | Istio Service Mesh enabled in ecommerce namespace. Strict mTLS enforced. 80/20 weighted traffic split configured for product-service canary. |
 | **Architecture diagram** | [Milestone 21](docs/architecture/CURRENT_ARCHITECTURE.md) |
 | **Environment** | PASS for Phase 3 tooling. |
