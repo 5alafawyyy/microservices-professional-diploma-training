@@ -1,5 +1,6 @@
 package com.microservices.pro.paymentservice;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microservices.pro.paymentservice.events.InventoryReservedEvent;
 import com.microservices.pro.paymentservice.events.PaymentCompletedEvent;
@@ -29,7 +30,7 @@ public class PaymentSagaHandler {
 
     private static final Logger log = LoggerFactory.getLogger(PaymentSagaHandler.class);
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     @Autowired
     private PaymentProcessor paymentProcessor;

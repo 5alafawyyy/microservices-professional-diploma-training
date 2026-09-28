@@ -47,7 +47,7 @@ class PaymentSagaHandlerTest {
 
     @Test
     void handleInventoryReserved_publishesPaymentCompleted_onSuccess() {
-        String inventoryReservedJson = "{\"orderId\":\"order-123\",\"productId\":\"PROD-001\",\"quantity\":2}";
+        String inventoryReservedJson = "{\"type\":\"InventoryReservedEvent\",\"orderId\":\"order-123\",\"productId\":\"PROD-001\",\"quantity\":2}";
         when(paymentProcessor.processPayment("order-123")).thenReturn("tx-456");
 
         handler.handleInventoryReserved(inventoryReservedJson);
@@ -60,7 +60,7 @@ class PaymentSagaHandlerTest {
 
     @Test
     void handleInventoryReserved_publishesPaymentFailed_whenProcessorThrows() {
-        String inventoryReservedJson = "{\"orderId\":\"order-123\",\"productId\":\"PROD-001\",\"quantity\":2}";
+        String inventoryReservedJson = "{\"type\":\"InventoryReservedEvent\",\"orderId\":\"order-123\",\"productId\":\"PROD-001\",\"quantity\":2}";
         when(paymentProcessor.processPayment("order-123"))
                 .thenThrow(new PaymentException("card declined"));
 

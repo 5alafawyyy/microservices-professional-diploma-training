@@ -26,14 +26,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 
     private final OrderService orderService;
+    private final OrderSagaOrchestrator orderSagaOrchestrator;
 
-    public OrderController(OrderService orderService) {
+    public OrderController(OrderService orderService, OrderSagaOrchestrator orderSagaOrchestrator) {
         this.orderService = orderService;
+        this.orderSagaOrchestrator = orderSagaOrchestrator;
     }
 
     @PostMapping
     public ResponseEntity<OrderResponse> createOrder(@RequestBody OrderRequest request) {
         return ResponseEntity.ok(orderService.createOrder(request));
+    }
+
+    @PostMapping("/orchestrated")
+    public ResponseEntity<OrderResponse> createOrderOrchestrated(@RequestBody OrderRequest request) {
+        return ResponseEntity.ok(orderSagaOrchestrator.startSaga(request));
     }
 
     @GetMapping("/{orderId}/status")
