@@ -547,6 +547,7 @@ This is where the platform is going. It is **not** permission to build ahead (Hi
 | 14 | 11B | 2026-09-28 | Kubernetes manifests and ArgoCD application for GitOps deployments of product-service. |
 | 15 | 12A | 2026-09-28 | Kubernetes Core concepts applied: Secrets, Resource Requests/Limits, and Liveness/Readiness probes. |
 | 16 | 12B | 2026-09-28 | Helm chart created for product-service, HPA configured, and RBAC applied for least-privilege security. |
+| 17 | 13A | 2026-09-28 | Observability stack added: Zipkin (tracing), Prometheus (metrics), Grafana (dashboards). Structured JSON logging enabled. |
 
 ## How this file is used
 
