@@ -219,11 +219,11 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | Item | Value |
 |---|---|
 | **Current phase** | Phase 3 — Observability & Advanced Patterns |
-| **Current session** | Session 19 — **Lab 15 complete** (6/6 acceptance criteria PASS) |
-| **Last lab completed** | Lab 15 — Keycloak + Authorization Code Flow (Session 19) |
-| **Next lab** | Session 20 |
-| **Platform state** | Keycloak deployed and configured as OIDC Provider with ecommerce-platform realm. |
-| **Architecture diagram** | [Milestone 19](docs/architecture/CURRENT_ARCHITECTURE.md) |
+| **Current session** | Session 20 — **Lab 16 complete** (8/8 acceptance criteria PASS) |
+| **Last lab completed** | Lab 16 — OAuth2 Resource Server & Client Credentials (Session 20) |
+| **Next lab** | Session 21 |
+| **Platform state** | API Gateway acts as an OAuth2 Resource Server. Custom JwtAuthFilter retired. Inter-service Client Credentials token fetching implemented. |
+| **Architecture diagram** | [Milestone 20](docs/architecture/CURRENT_ARCHITECTURE.md) |
 | **Environment** | PASS for Phase 3 tooling. |
 | **Blockers** | None. |
 
@@ -251,3 +251,4 @@ is never modified. Instructor repositories are read-only: never fork, push, or m
 | 2026-09-28 | Lab 13A complete: Integrated Zipkin, Prometheus, Grafana, and structured JSON logging. |
 | 2026-09-28 | Lab 13B complete: Applied CQRS Command/Query split to product-service. |
 | 2026-09-28 | Lab 15 complete: Keycloak container added with manual token flow verification. |
+| 2026-09-28 | Lab 16 complete: API Gateway migrated to OAuth2 Resource Server. Client Credentials configured. |
