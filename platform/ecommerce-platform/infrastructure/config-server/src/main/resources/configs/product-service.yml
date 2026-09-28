@@ -1,0 +1,5 @@
+# Served to product-service by the Config Server (native backend).
+# Marker property used to prove externalized configuration end-to-end:
+# GET http://localhost:8888/product-service/default
+app:
+  source: config-server

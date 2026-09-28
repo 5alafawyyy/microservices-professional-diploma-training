@@ -1,0 +1,24 @@
+# Enterprise E-Commerce Platform — local infrastructure.
+#
+# Session 1 / Lab 1 state. Historical State Rule: this file must NOT contain
+# technology that a later session introduces. Planned arrivals:
+#   redis  :6379  → session 3  (Lab 2B, gateway rate-limiter counters)
+#   kafka  :9092  → session 7  (Lab 5A, choreography saga)
+#   zipkin :9411 · prometheus :9090 · grafana :3000 → session 17
+#   application containers (Dockerfiles) → session 9; until then every Spring
+#   service runs on the host via `mvn spring-boot:run`.
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: microservices_pro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5

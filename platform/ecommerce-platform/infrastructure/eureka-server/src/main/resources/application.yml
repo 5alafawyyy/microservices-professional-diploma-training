@@ -1,0 +1,22 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  client:
+    # The registry does not register with itself nor fetch a registry copy.
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    # DEV ONLY: self-preservation protects against network partitions; it is
+    # disabled here so stale instances disappear quickly during exercises.
+    enable-self-preservation: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
